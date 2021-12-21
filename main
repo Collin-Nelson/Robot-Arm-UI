@@ -1,3 +1,11 @@
 # Main file for the test UI
 
-# This is a test of uploading and committing changes from PyCharm to GitHub
+import numpy, wx
+
+app = wx.App()
+
+frm = wx.Frame(None, title="Hello World")
+
+frm.Show()
+
+app.MainLoop()
