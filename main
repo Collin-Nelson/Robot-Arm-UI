@@ -52,13 +52,21 @@ class AngleDisplayPanel(wx.Panel):
         font = font.Bold()
         title.SetFont(font)
 
+        # Add rectangular status lights to display if endstops are currently pressed
+        self.statusLight1 = wx.StaticBox(self, wx.ID_ANY, "", size=(20,20), pos=(5,25), style=wx.SUNKEN_BORDER)
+        self.statusLight2 = wx.StaticBox(self, wx.ID_ANY, "", size=(20,20), pos=(5,55), style=wx.SUNKEN_BORDER)
+        self.statusLight3 = wx.StaticBox(self, wx.ID_ANY, "", size=(20,20), pos=(5,85), style=wx.SUNKEN_BORDER)
+        self.statusLight4 = wx.StaticBox(self, wx.ID_ANY, "", size=(20,20), pos=(5,115), style=wx.SUNKEN_BORDER)
+        self.statusLight5 = wx.StaticBox(self, wx.ID_ANY, "", size=(20,20), pos=(5,145), style=wx.SUNKEN_BORDER)
+        self.statusLight6 = wx.StaticBox(self, wx.ID_ANY, "", size=(20,20), pos=(5,175), style=wx.SUNKEN_BORDER)
+
         # Labels for the joint angle text boxes
-        lbl1 = wx.StaticText(self, label="J1", pos=(10,25))
-        lbl2 = wx.StaticText(self, label="J2", pos=(10,55))
-        lbl3 = wx.StaticText(self, label="J3", pos=(10,85))
-        lbl4 = wx.StaticText(self, label="J4", pos=(10,115))
-        lbl5 = wx.StaticText(self, label="J5", pos=(10,145))
-        lbl6 = wx.StaticText(self, label="J6", pos=(10,175))
+        lbl1 = wx.StaticText(self, label="J1", pos=(40,25))
+        lbl2 = wx.StaticText(self, label="J2", pos=(40,55))
+        lbl3 = wx.StaticText(self, label="J3", pos=(40,85))
+        lbl4 = wx.StaticText(self, label="J4", pos=(40,115))
+        lbl5 = wx.StaticText(self, label="J5", pos=(40,145))
+        lbl6 = wx.StaticText(self, label="J6", pos=(40,175))
 
         # Set the font of the labels on the joint angle display textctrl boxes
         lblfont = lbl1.GetFont()
@@ -72,12 +80,12 @@ class AngleDisplayPanel(wx.Panel):
         lbl6.SetFont(lblfont)
 
         # Text boxes to display the current angle of each joint
-        self.tc1 = wx.TextCtrl(self, pos=(35, 25), style=wx.TE_READONLY)
-        self.tc2 = wx.TextCtrl(self, pos=(35, 55), style=wx.TE_READONLY)
-        self.tc3 = wx.TextCtrl(self, pos=(35, 85), style=wx.TE_READONLY)
-        self.tc4 = wx.TextCtrl(self, pos=(35, 115), style=wx.TE_READONLY)
-        self.tc5 = wx.TextCtrl(self, pos=(35, 145), style=wx.TE_READONLY)
-        self.tc6 = wx.TextCtrl(self, pos=(35, 175), style=wx.TE_READONLY)
+        self.tc1 = wx.TextCtrl(self, pos=(65, 25), style=wx.TE_READONLY)
+        self.tc2 = wx.TextCtrl(self, pos=(65, 55), style=wx.TE_READONLY)
+        self.tc3 = wx.TextCtrl(self, pos=(65, 85), style=wx.TE_READONLY)
+        self.tc4 = wx.TextCtrl(self, pos=(65, 115), style=wx.TE_READONLY)
+        self.tc5 = wx.TextCtrl(self, pos=(65, 145), style=wx.TE_READONLY)
+        self.tc6 = wx.TextCtrl(self, pos=(65, 175), style=wx.TE_READONLY)
 
         #set the angle value in the text control box
         self.tc1.SetValue('0')
