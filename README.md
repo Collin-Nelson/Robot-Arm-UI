@@ -1,2 +1,2 @@
-# UI-test
-A Test for making UI applications with Python
+# Robot-Arm-UI
+A UI application to control my robot arm
