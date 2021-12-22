@@ -7,7 +7,14 @@ class MyFrame(wx.Frame):
         super().__init__(parent=None, title='Test UI')
 
         panel1 = wx.Panel(self)
+        panel2 = wx.Panel(self)
 
+        # TODO format UI and add buttons/text boxes to suit my inputs
+        # I want:
+        # 7 buttons/degree inputs for each joint
+        # A test command button that directly sends a text command
+        # A button for homing the robot
+        # Reports of the state of each joint (commanded position at first, but then later the position reading from the encoder of each joint)
 
         self.tc1 = wx.TextCtrl(panel1, pos=(5, 20))
         self.tc2 = wx.TextCtrl(panel1, pos=(20, 20))
