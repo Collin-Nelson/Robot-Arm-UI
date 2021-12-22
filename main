@@ -9,7 +9,29 @@ class MainFrame(wx.Frame):
         self.Panel = AngleInputPanel(self)
         self.Panel = IndividualCommands(self)
 
+        p = wx.Panel(self)
+        nb = wx.Notebook(p)
+
+        tab1 = ControlTab(nb)
+        tab2 = Tab2(nb)
+
+        nb.AddPage(tab1, "Tab 1")
+        nb.AddPage(tab2, "Tab 2")
+
+
+
         self.Show()
+
+class ControlTab(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent)
+        t = wx.StaticText(self, -1, "First Tab", pos=(20,20), size=(20,20))
+
+class Tab2(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent)
+        t = wx.StaticText(self, -1, "Second Tab", pos=(10,20), size=(20,20))
+
 
 class IndividualCommands(wx.Panel):
     def __init__(self, parent):
@@ -24,7 +46,7 @@ class IndividualCommands(wx.Panel):
 
 class AngleDisplayPanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (5, 5), size = (200, 200))
+        wx.Panel.__init__(self, parent = parent, pos = (50, 5), size = (200, 200))
 
         title = wx.StaticText(self, label = "Joint Angle Display")
 
