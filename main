@@ -2,36 +2,75 @@
 
 import numpy, wx
 
-class MyFrame(wx.Frame):
+class MainFrame(wx.Frame):
     def __init__(self):
-        super().__init__(parent=None, title='Test UI')
-
-        panel1 = wx.Panel(self)
-        panel2 = wx.Panel(self)
-
-        # TODO format UI and add buttons/text boxes to suit my inputs
-        # I want:
-        # 7 buttons/degree inputs for each joint
-        # A test command button that directly sends a text command
-        # A button for homing the robot
-        # Reports of the state of each joint (commanded position at first, but then later the position reading from the encoder of each joint)
-
-        self.tc1 = wx.TextCtrl(panel1, pos=(5, 20))
-        self.tc2 = wx.TextCtrl(panel1, pos=(20, 20))
-        btn1 = wx.Button(panel1, label='btn1', pos=(5, 5))
-        btn2 = wx.Button(panel1, label='btn2', pos=(20, 5))
-
-        btn1.Bind(wx.EVT_BUTTON, self.btn1Press)
-        btn2.Bind(wx.EVT_BUTTON, self.btn2Press)
-
-        sizer = wx.FlexGridSizer(2, 2, 10, 10)
-        sizer.Add(btn1, 0, wx.ALL, 5)
-        sizer.Add(self.tc1, 0, wx.ALL, 5)
-        sizer.Add(btn2, 0, wx.ALL, 5)
-        sizer.Add(self.tc2, 0, wx.ALL, 5)
-        panel1.SetSizer(sizer)
+        super().__init__(parent=None, title='UI Test', size=(1250, 750))
+        self.Panel = AngleDisplayPanel(self)
+        self.Panel = AngleInputPanel(self)
+        self.Panel = IndividualCommands(self)
 
         self.Show()
+
+class IndividualCommands(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (600, 5), size = (200, 200))
+
+        title = wx.StaticText(self, label = "Commands")
+
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
+
+class AngleDisplayPanel(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (5, 5), size = (200, 200))
+
+        title = wx.StaticText(self, label = "Joint Angle Display")
+
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
+
+
+class AngleInputPanel(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (300, 5), size = (210, 200))
+
+        title = wx.StaticText(self, label = "Joint Angle Inputs")
+
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
+
+        # Text input boxes for the angle for each joint
+        self.tc1 = wx.TextCtrl(self, pos=(90, 20))
+        self.tc2 = wx.TextCtrl(self, pos=(90, 50))
+        self.tc3 = wx.TextCtrl(self, pos=(90, 80))
+        self.tc4 = wx.TextCtrl(self, pos=(90, 110))
+        self.tc5 = wx.TextCtrl(self, pos=(90, 140))
+        self.tc6 = wx.TextCtrl(self, pos=(90, 170))
+
+        # Buttons to trigger moving to the specified number of degrees
+        btn1 = wx.Button(self, label='Move J1', pos=(5, 20))
+        btn2 = wx.Button(self, label='Move J2', pos=(5, 50))
+        btn3 = wx.Button(self, label='Move J3', pos=(5, 80))
+        btn4 = wx.Button(self, label='Move J4', pos=(5, 110))
+        btn5 = wx.Button(self, label='Move J5', pos=(5, 140))
+        btn6 = wx.Button(self, label='Move J6', pos=(5, 170))
+
+        # Bind each button to its action
+        btn1.Bind(wx.EVT_BUTTON, self.btn1Press)
+        btn2.Bind(wx.EVT_BUTTON, self.btn2Press)
+        btn3.Bind(wx.EVT_BUTTON, self.btn3Press)
+        btn4.Bind(wx.EVT_BUTTON, self.btn4Press)
+        btn5.Bind(wx.EVT_BUTTON, self.btn5Press)
+        btn6.Bind(wx.EVT_BUTTON, self.btn6Press)
+
+
+    # Actions for each button
 
     def btn1Press(self, event):
         value = self.tc1.GetValue()
@@ -47,8 +86,38 @@ class MyFrame(wx.Frame):
         else:
             print(f'You typed: "{value}"')
 
+    def btn3Press(self, event):
+        value = self.tc3.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+    def btn4Press(self, event):
+        value = self.tc4.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+    def btn5Press(self, event):
+        value = self.tc5.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+    def btn6Press(self, event):
+        value = self.tc6.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+def main():
+    app = wx.App()
+    frame = MainFrame()
+    app.MainLoop()
 
 if __name__ == '__main__':
-    app = wx.App()
-    frame = MyFrame()
-    app.MainLoop()
+    main()
