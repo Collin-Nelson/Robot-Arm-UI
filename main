@@ -23,13 +23,15 @@ class MainFrame(wx.Frame):
 class ControlTab(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        #t = wx.StaticText(self, -1, "First Tab", (20,20))
+        #t = wx.StaticText(self, -1, "Controls Tab", (20,20))
 
         self.SetBackgroundColour('gray')
 
         self.Panel = AngleDisplayPanel(self)
         self.Panel = AngleInputPanel(self)
-        self.Panel = IndividualCommands(self)
+        self.Panel = HomeCommands(self)
+        self.Panel = ZeroCommands(self)
+        self.Panel = TextCommand(self)
 
 class Tab2(wx.Panel):
     def __init__(self, parent):
@@ -39,44 +41,12 @@ class Tab2(wx.Panel):
         self.SetBackgroundColour('gray')
 
 
-class IndividualCommands(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (600, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
-
-        title = wx.StaticText(self, label = "Commands", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
-        self.SetBackgroundColour('white')
-
-        font = title.GetFont()
-        font.PointSize = 12
-        font = font.Bold()
-        title.SetFont(font)
-
-        # Button to home selected axes
-        homeBtn = wx.Button(self, label='Home Selected Axes', pos=(5, 20))
-
-        # Bind home button to its action
-        homeBtn.Bind(wx.EVT_BUTTON, self.homeBtnPress)
-
-        # Checkbox for each axis to home
-        chk1 = wx.CheckBox(self, label="Joint 1", pos=(10,50))
-        chk2 = wx.CheckBox(self, label="Joint 2", pos=(10,70))
-        chk3 = wx.CheckBox(self, label="Joint 3", pos=(10,90))
-        chk4 = wx.CheckBox(self, label="Joint 4", pos=(10,110))
-        chk5 = wx.CheckBox(self, label="Joint 5", pos=(10,130))
-        chk6 = wx.CheckBox(self, label="Joint 6", pos=(10,150))
-
-    # Deals with homing button press
-    def homeBtnPress(self, event):
-        print("Home Button Pressed")
-
-
 class AngleDisplayPanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (50, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent = parent, pos = (5, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label = "Joint Angle Display", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
-
         font = title.GetFont()
         font.PointSize = 12
         font = font.Bold()
@@ -120,7 +90,7 @@ class AngleDisplayPanel(wx.Panel):
 
 class AngleInputPanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (300, 5), size = (210, 200), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent = parent, pos = (210, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label = "Joint Angle Inputs", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
@@ -198,6 +168,138 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
+
+
+class HomeCommands(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (415, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
+
+        title = wx.StaticText(self, label = "Homing", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
+        self.SetBackgroundColour('white')
+
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
+
+        # Button to home selected axes
+        homeBtn = wx.Button(self, label='Home Selected Axes', pos=(5, 20))
+
+        # Bind home button to its action
+        homeBtn.Bind(wx.EVT_BUTTON, self.homeBtnPress)
+
+        # Checkbox for each axis to home
+        self.chk1 = wx.CheckBox(self, label="Joint 1", pos=(10,50))
+        self.chk2 = wx.CheckBox(self, label="Joint 2", pos=(10,70))
+        self.chk3 = wx.CheckBox(self, label="Joint 3", pos=(10,90))
+        self.chk4 = wx.CheckBox(self, label="Joint 4", pos=(10,110))
+        self.chk5 = wx.CheckBox(self, label="Joint 5", pos=(10,130))
+        self.chk6 = wx.CheckBox(self, label="Joint 6", pos=(10,150))
+
+        # Sets checkboxes to default to checked
+        self.chk1.SetValue(1)
+        self.chk2.SetValue(1)
+        self.chk3.SetValue(1)
+        self.chk4.SetValue(1)
+        self.chk5.SetValue(1)
+        self.chk6.SetValue(1)
+
+    # Deals with homing button press
+    def homeBtnPress(self, event):
+        print("Home Button Pressed")
+        if self.chk1.GetValue():
+            print("Homing joint 1")
+        if self.chk2.GetValue():
+            print("Homing joint 2")
+        if self.chk3.GetValue():
+            print("Homing joint 3")
+        if self.chk4.GetValue():
+            print("Homing joint 4")
+        if self.chk5.GetValue():
+            print("Homing joint 5")
+        if self.chk6.GetValue():
+            print("Homing joint 6")
+
+class ZeroCommands(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (620, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
+
+        title = wx.StaticText(self, label = "Zeroing", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
+        self.SetBackgroundColour('white')
+
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
+
+        # Button to zero selected axes
+        zeroBtn = wx.Button(self, label='Zero Selected Axes', pos=(5, 20))
+
+        # Bind zero button to its action
+        zeroBtn.Bind(wx.EVT_BUTTON, self.zeroBtnPress)
+
+        # Checkbox for each axis to zero
+        self.chk1 = wx.CheckBox(self, label="Joint 1", pos=(10,50))
+        self.chk2 = wx.CheckBox(self, label="Joint 2", pos=(10,70))
+        self.chk3 = wx.CheckBox(self, label="Joint 3", pos=(10,90))
+        self.chk4 = wx.CheckBox(self, label="Joint 4", pos=(10,110))
+        self.chk5 = wx.CheckBox(self, label="Joint 5", pos=(10,130))
+        self.chk6 = wx.CheckBox(self, label="Joint 6", pos=(10,150))
+
+        # Sets checkboxes to default to checked
+        self.chk1.SetValue(1)
+        self.chk2.SetValue(1)
+        self.chk3.SetValue(1)
+        self.chk4.SetValue(1)
+        self.chk5.SetValue(1)
+        self.chk6.SetValue(1)
+
+    # Deals with zero button press
+    def zeroBtnPress(self, event):
+        print("Zero Button Pressed")
+        if self.chk1.GetValue():
+            print("Zeroing joint 1")
+        if self.chk2.GetValue():
+            print("Zeroing joint 2")
+        if self.chk3.GetValue():
+            print("Zeroing joint 3")
+        if self.chk4.GetValue():
+            print("Zeroing joint 4")
+        if self.chk5.GetValue():
+            print("Zeroing joint 5")
+        if self.chk6.GetValue():
+            print("Zeroing joint 6")
+
+
+class TextCommand(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (825, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
+
+        title = wx.StaticText(self, label = "Text Command", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
+        self.SetBackgroundColour('white')
+
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
+
+        # Text control for inputting text commands to be sent directly over serial
+        self.comtc = wx.TextCtrl(self, pos=(35, 40))
+
+        # Button to send command string
+        comBtn = wx.Button(self, label='Send Command String', pos=(20, 70))
+
+        # Bind zero button to its action
+        comBtn.Bind(wx.EVT_BUTTON, self.comBtnPress)
+
+
+    # Deals with zero button press
+    def comBtnPress(self, event):
+        print("Send Command Button Pressed")
+        print(f"Test string is:", (self.comtc.GetValue()))
+
+
+
 
 def main():
     app = wx.App()
