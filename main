@@ -19,7 +19,6 @@ class MainFrame(wx.Frame):
         sizer.Add(nb, 1, wx.EXPAND)
         p.SetSizer(sizer)
 
-        self.Show()
 
 class ControlTab(wx.Panel):
     def __init__(self, parent):
@@ -44,32 +43,86 @@ class IndividualCommands(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent = parent, pos = (600, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
 
-        title = wx.StaticText(self, label = "Commands")
+        title = wx.StaticText(self, label = "Commands", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
 
         font = title.GetFont()
         font.PointSize = 12
         font = font.Bold()
         title.SetFont(font)
+
+        # Button to home selected axes
+        homeBtn = wx.Button(self, label='Home Selected Axes', pos=(5, 20))
+
+        # Bind home button to its action
+        homeBtn.Bind(wx.EVT_BUTTON, self.homeBtnPress)
+
+        # Checkbox for each axis to home
+        chk1 = wx.CheckBox(self, label="Joint 1", pos=(10,50))
+        chk2 = wx.CheckBox(self, label="Joint 2", pos=(10,70))
+        chk3 = wx.CheckBox(self, label="Joint 3", pos=(10,90))
+        chk4 = wx.CheckBox(self, label="Joint 4", pos=(10,110))
+        chk5 = wx.CheckBox(self, label="Joint 5", pos=(10,130))
+        chk6 = wx.CheckBox(self, label="Joint 6", pos=(10,150))
+
+    # Deals with homing button press
+    def homeBtnPress(self, event):
+        print("Home Button Pressed")
+
 
 class AngleDisplayPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent = parent, pos = (50, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
 
-        title = wx.StaticText(self, label = "Joint Angle Display")
+        title = wx.StaticText(self, label = "Joint Angle Display", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
 
         font = title.GetFont()
         font.PointSize = 12
         font = font.Bold()
         title.SetFont(font)
+
+        # Labels for the joint angle text boxes
+        lbl1 = wx.StaticText(self, label="J1", pos=(10,25))
+        lbl2 = wx.StaticText(self, label="J2", pos=(10,55))
+        lbl3 = wx.StaticText(self, label="J3", pos=(10,85))
+        lbl4 = wx.StaticText(self, label="J4", pos=(10,115))
+        lbl5 = wx.StaticText(self, label="J5", pos=(10,145))
+        lbl6 = wx.StaticText(self, label="J6", pos=(10,175))
+
+        # Set the font of the labels on the joint angle display textctrl boxes
+        lblfont = lbl1.GetFont()
+        lblfont.PointSize = 10
+        lblfont = lblfont.Bold()
+        lbl1.SetFont(lblfont)
+        lbl2.SetFont(lblfont)
+        lbl3.SetFont(lblfont)
+        lbl4.SetFont(lblfont)
+        lbl5.SetFont(lblfont)
+        lbl6.SetFont(lblfont)
+
+        # Text boxes to display the current angle of each joint
+        self.tc1 = wx.TextCtrl(self, pos=(35, 25), style=wx.TE_READONLY)
+        self.tc2 = wx.TextCtrl(self, pos=(35, 55), style=wx.TE_READONLY)
+        self.tc3 = wx.TextCtrl(self, pos=(35, 85), style=wx.TE_READONLY)
+        self.tc4 = wx.TextCtrl(self, pos=(35, 115), style=wx.TE_READONLY)
+        self.tc5 = wx.TextCtrl(self, pos=(35, 145), style=wx.TE_READONLY)
+        self.tc6 = wx.TextCtrl(self, pos=(35, 175), style=wx.TE_READONLY)
+
+        #set the angle value in the text control box
+        self.tc1.SetValue('0')
+        self.tc2.SetValue('0')
+        self.tc3.SetValue('0')
+        self.tc4.SetValue('0')
+        self.tc5.SetValue('0')
+        self.tc6.SetValue('0')
 
 
 class AngleInputPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent = parent, pos = (300, 5), size = (210, 200), style=wx.SUNKEN_BORDER)
 
-        title = wx.StaticText(self, label = "Joint Angle Inputs")
+        title = wx.StaticText(self, label = "Joint Angle Inputs", size=(200,18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
 
         font = title.GetFont()
@@ -149,6 +202,8 @@ class AngleInputPanel(wx.Panel):
 def main():
     app = wx.App()
     frame = MainFrame()
+    frame.Show()
+
     app.MainLoop()
 
 if __name__ == '__main__':
