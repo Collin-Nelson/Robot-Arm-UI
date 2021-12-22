@@ -5,9 +5,6 @@ import numpy, wx
 class MainFrame(wx.Frame):
     def __init__(self):
         super().__init__(parent=None, title='UI Test', size=(1250, 750))
-        self.Panel = AngleDisplayPanel(self)
-        self.Panel = AngleInputPanel(self)
-        self.Panel = IndividualCommands(self)
 
         p = wx.Panel(self)
         nb = wx.Notebook(p)
@@ -18,26 +15,37 @@ class MainFrame(wx.Frame):
         nb.AddPage(tab1, "Tab 1")
         nb.AddPage(tab2, "Tab 2")
 
-
+        sizer = wx.BoxSizer()
+        sizer.Add(nb, 1, wx.EXPAND)
+        p.SetSizer(sizer)
 
         self.Show()
 
 class ControlTab(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        t = wx.StaticText(self, -1, "First Tab", pos=(20,20), size=(20,20))
+        #t = wx.StaticText(self, -1, "First Tab", (20,20))
+
+        self.SetBackgroundColour('gray')
+
+        self.Panel = AngleDisplayPanel(self)
+        self.Panel = AngleInputPanel(self)
+        self.Panel = IndividualCommands(self)
 
 class Tab2(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        t = wx.StaticText(self, -1, "Second Tab", pos=(10,20), size=(20,20))
+        #t = wx.StaticText(self, -1, "Second Tab", (20,20))
+
+        self.SetBackgroundColour('gray')
 
 
 class IndividualCommands(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (600, 5), size = (200, 200))
+        wx.Panel.__init__(self, parent = parent, pos = (600, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label = "Commands")
+        self.SetBackgroundColour('white')
 
         font = title.GetFont()
         font.PointSize = 12
@@ -46,9 +54,10 @@ class IndividualCommands(wx.Panel):
 
 class AngleDisplayPanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (50, 5), size = (200, 200))
+        wx.Panel.__init__(self, parent = parent, pos = (50, 5), size = (200, 200), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label = "Joint Angle Display")
+        self.SetBackgroundColour('white')
 
         font = title.GetFont()
         font.PointSize = 12
@@ -58,9 +67,10 @@ class AngleDisplayPanel(wx.Panel):
 
 class AngleInputPanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (300, 5), size = (210, 200))
+        wx.Panel.__init__(self, parent = parent, pos = (300, 5), size = (210, 200), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label = "Joint Angle Inputs")
+        self.SetBackgroundColour('white')
 
         font = title.GetFont()
         font.PointSize = 12
