@@ -2,101 +2,122 @@
 
 import numpy, wx
 
-#test
-class HelloFrame(wx.Frame):
-    """
-    A Frame that says Hello World
-    """
+class MainFrame(wx.Frame):
+    def __init__(self):
+        super().__init__(parent=None, title='UI Test', size=(1250, 750))
+        self.Panel = AngleDisplayPanel(self)
+        self.Panel = AngleInputPanel(self)
+        self.Panel = IndividualCommands(self)
 
-    def __init__(self, *args, **kw):
-        # ensure the parent's __init__ is called
-        super(HelloFrame, self).__init__(*args, **kw)
+        self.Show()
 
-        # create a panel in the frame
-        pnl = wx.Panel(self)
+class IndividualCommands(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (600, 5), size = (200, 200))
 
-        # put some text with a larger bold font on it
-        st = wx.StaticText(pnl, label="Hello World!")
-        font = st.GetFont()
-        font.PointSize += 10
+        title = wx.StaticText(self, label = "Commands")
+
+        font = title.GetFont()
+        font.PointSize = 12
         font = font.Bold()
-        st.SetFont(font)
+        title.SetFont(font)
 
-        # and create a sizer to manage the layout of child widgets
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(st, wx.SizerFlags().Border(wx.TOP|wx.LEFT, 25))
-        pnl.SetSizer(sizer)
+class AngleDisplayPanel(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (5, 5), size = (200, 200))
 
-        # create a menu bar
-        self.makeMenuBar()
+        title = wx.StaticText(self, label = "Joint Angle Display")
 
-        # and a status bar
-        self.CreateStatusBar()
-        self.SetStatusText("Welcome to wxPython!")
-
-
-    def makeMenuBar(self):
-        """
-        A menu bar is composed of menus, which are composed of menu items.
-        This method builds a set of menus and binds handlers to be called
-        when the menu item is selected.
-        """
-
-        # Make a file menu with Hello and Exit items
-        fileMenu = wx.Menu()
-        # The "\t..." syntax defines an accelerator key that also triggers
-        # the same event
-        helloItem = fileMenu.Append(-1, "&Hello...\tCtrl-H",
-                "Help string shown in status bar for this menu item")
-        fileMenu.AppendSeparator()
-        # When using a stock ID we don't need to specify the menu item's
-        # label
-        exitItem = fileMenu.Append(wx.ID_EXIT)
-
-        # Now a help menu for the about item
-        helpMenu = wx.Menu()
-        aboutItem = helpMenu.Append(wx.ID_ABOUT)
-
-        # Make the menu bar and add the two menus to it. The '&' defines
-        # that the next letter is the "mnemonic" for the menu item. On the
-        # platforms that support it those letters are underlined and can be
-        # triggered from the keyboard.
-        menuBar = wx.MenuBar()
-        menuBar.Append(fileMenu, "&File")
-        menuBar.Append(helpMenu, "&Help")
-
-        # Give the menu bar to the frame
-        self.SetMenuBar(menuBar)
-
-        # Finally, associate a handler function with the EVT_MENU event for
-        # each of the menu items. That means that when that menu item is
-        # activated then the associated handler function will be called.
-        self.Bind(wx.EVT_MENU, self.OnHello, helloItem)
-        self.Bind(wx.EVT_MENU, self.OnExit,  exitItem)
-        self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
 
 
-    def OnExit(self, event):
-        """Close the frame, terminating the application."""
-        self.Close(True)
+class AngleInputPanel(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent = parent, pos = (300, 5), size = (210, 200))
+
+        title = wx.StaticText(self, label = "Joint Angle Inputs")
+
+        font = title.GetFont()
+        font.PointSize = 12
+        font = font.Bold()
+        title.SetFont(font)
+
+        # Text input boxes for the angle for each joint
+        self.tc1 = wx.TextCtrl(self, pos=(90, 20))
+        self.tc2 = wx.TextCtrl(self, pos=(90, 50))
+        self.tc3 = wx.TextCtrl(self, pos=(90, 80))
+        self.tc4 = wx.TextCtrl(self, pos=(90, 110))
+        self.tc5 = wx.TextCtrl(self, pos=(90, 140))
+        self.tc6 = wx.TextCtrl(self, pos=(90, 170))
+
+        # Buttons to trigger moving to the specified number of degrees
+        btn1 = wx.Button(self, label='Move J1', pos=(5, 20))
+        btn2 = wx.Button(self, label='Move J2', pos=(5, 50))
+        btn3 = wx.Button(self, label='Move J3', pos=(5, 80))
+        btn4 = wx.Button(self, label='Move J4', pos=(5, 110))
+        btn5 = wx.Button(self, label='Move J5', pos=(5, 140))
+        btn6 = wx.Button(self, label='Move J6', pos=(5, 170))
+
+        # Bind each button to its action
+        btn1.Bind(wx.EVT_BUTTON, self.btn1Press)
+        btn2.Bind(wx.EVT_BUTTON, self.btn2Press)
+        btn3.Bind(wx.EVT_BUTTON, self.btn3Press)
+        btn4.Bind(wx.EVT_BUTTON, self.btn4Press)
+        btn5.Bind(wx.EVT_BUTTON, self.btn5Press)
+        btn6.Bind(wx.EVT_BUTTON, self.btn6Press)
 
 
-    def OnHello(self, event):
-        """Say hello to the user."""
-        wx.MessageBox("Hello again from wxPython")
+    # Actions for each button
 
+    def btn1Press(self, event):
+        value = self.tc1.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
 
-    def OnAbout(self, event):
-        """Display an About Dialog"""
-        wx.MessageBox("This is a wxPython Hello World sample",
-                      "About Hello World 2",
-                      wx.OK|wx.ICON_INFORMATION)
+    def btn2Press(self, event):
+        value = self.tc2.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
 
+    def btn3Press(self, event):
+        value = self.tc3.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+    def btn4Press(self, event):
+        value = self.tc4.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+    def btn5Press(self, event):
+        value = self.tc5.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+    def btn6Press(self, event):
+        value = self.tc6.GetValue()
+        if not value:
+            print("You didn't enter anything!")
+        else:
+            print(f'You typed: "{value}"')
+
+def main():
+    app = wx.App()
+    frame = MainFrame()
+    app.MainLoop()
 
 if __name__ == '__main__':
-    # When this module is run (not imported) then create the app, the
-    # frame, show it, and start the event loop.
-    app = wx.App()
-    frm = HelloFrame(None, title='Hello World 2')
-    frm.Show()
-    app.MainLoop()
+    main()
