@@ -1,44 +1,12 @@
-# Main file for the test UI
-
-import numpy, wx
-
-class MainFrame(wx.Frame):
-    def __init__(self):
-        super().__init__(parent=None, title='UI Test', size=(1250, 750))
-        self.Panel = AngleDisplayPanel(self)
-        self.Panel = AngleInputPanel(self)
-        self.Panel = IndividualCommands(self)
-
-        self.Show()
-
-class IndividualCommands(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (600, 5), size = (200, 200))
-
-        title = wx.StaticText(self, label = "Commands")
-
-        font = title.GetFont()
-        font.PointSize = 12
-        font = font.Bold()
-        title.SetFont(font)
-
-class AngleDisplayPanel(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (5, 5), size = (200, 200))
-
-        title = wx.StaticText(self, label = "Joint Angle Display")
-
-        font = title.GetFont()
-        font.PointSize = 12
-        font = font.Bold()
-        title.SetFont(font)
+import wx
 
 
 class AngleInputPanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent = parent, pos = (300, 5), size = (210, 200))
+        wx.Panel.__init__(self, parent=parent, pos=(210, 5), size=(200, 200), style=wx.SUNKEN_BORDER)
 
-        title = wx.StaticText(self, label = "Joint Angle Inputs")
+        title = wx.StaticText(self, label="Joint Angle Inputs", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
+        self.SetBackgroundColour('white')
 
         font = title.GetFont()
         font.PointSize = 12
@@ -69,9 +37,7 @@ class AngleInputPanel(wx.Panel):
         btn5.Bind(wx.EVT_BUTTON, self.btn5Press)
         btn6.Bind(wx.EVT_BUTTON, self.btn6Press)
 
-
     # Actions for each button
-
     def btn1Press(self, event):
         value = self.tc1.GetValue()
         if not value:
@@ -113,11 +79,3 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-
-def main():
-    app = wx.App()
-    frame = MainFrame()
-    app.MainLoop()
-
-if __name__ == '__main__':
-    main()
