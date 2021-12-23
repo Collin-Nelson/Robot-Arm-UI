@@ -29,7 +29,7 @@ class SerialComms:
             print("Command '", string, "' sent")
         else:
             queue.put(string)
-            print("Command '", string, "' added to queue")
+            print("Command '", string, "' added to queue \n")
 
     # Function to read lines from the serial com
     def SerialRead(self):
