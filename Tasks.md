@@ -13,8 +13,11 @@
 # [X] TODO Make buttons process text and send serial commands when pushed
 # [X] TODO Write code to regularly send "print pos" and "LS status" regularly to arm to get info
 # [X] TODO Write code to check serial buffer and call SerialRead() when there is something available
+# [X] TODO Add the ability to control the gripper to the poses queue tab
+# [] TODO Get serial running with teensy hardware, then uncomment SerialComms call in PosesQueuePanel and test
 
 # LESS IMPORTANT
+# [] TODO Add another tab to UI to set acceleration and max speed parameters, etc
 # [] TODO Implement dynamic size and position within the window and each panel
 # [] TODO Make the second tab of the UI into a place to generate poses and queue them, then run the entire queue at once
 # [] TODO Make the third tab of the UI a place to save different queues of poses and load them into the second tab to run - possibly also fits in the second tab
