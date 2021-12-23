@@ -55,6 +55,7 @@ class PoseQueueTab(wx.Panel):
 
         self.Panel = PosesQueuePanel(self)
         self.Panel = PoseGeneratorPanel(self)
+        self.Panel = ConsoleOutputPanel(self)
 
 
 class ParametersTab(wx.Panel):

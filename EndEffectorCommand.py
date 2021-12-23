@@ -5,7 +5,7 @@ from Serial import SerialComms
 
 class EndEffectorCommand(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent=parent, pos=(1030, 235), size=(200, 230), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, pos=(825, 240), size=(200, 230), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label="End Effector Command", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')

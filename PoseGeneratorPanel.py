@@ -5,7 +5,7 @@ from PosesQueuePanel import PosesQueuePanel
 
 class PoseGeneratorPanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent=parent, pos=(210, 5), size=(200, 275), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, pos=(620, 5), size=(200, 275), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label="Pose Angle Inputs", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')

@@ -5,7 +5,7 @@ from Serial import SerialComms
 
 class PosesQueuePanel(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent=parent, pos=(5, 5), size=(200, 580), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, pos=(415, 5), size=(200, 465), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label="Pose Queue", pos=(5, 5), size=(200, 20), style=wx.ALIGN_LEFT)
         self.SetBackgroundColour('white')
@@ -15,13 +15,13 @@ class PosesQueuePanel(wx.Panel):
         title.SetFont(font)
 
         global tcQueue
-        tcQueue = wx.TextCtrl(self, pos=(0, 30), size=(200, 470), style=wx.TE_MULTILINE | wx.TE_READONLY | wx.HSCROLL)
+        tcQueue = wx.TextCtrl(self, pos=(5, 30), size=(185, 355), style=wx.TE_MULTILINE | wx.TE_READONLY | wx.HSCROLL)
 
         # Button to run or clear or save or load the pose queue
-        runAllBtn = wx.Button(self, label='Run Queue', pos=(5, 505), size=(90, 30))
-        clearAllBtn = wx.Button(self, label='Clear Queue', pos=(100, 505), size=(90, 30))
-        saveAllBtn = wx.Button(self, label='Save Queue', pos=(5, 540), size=(90, 30))
-        loadQueueBtn = wx.Button(self, label='Load Queue', pos=(100, 540), size=(90, 30))
+        runAllBtn = wx.Button(self, label='Run Queue', pos=(5, 430), size=(90, 30))
+        clearAllBtn = wx.Button(self, label='Clear Queue', pos=(100, 395), size=(90, 30))
+        saveAllBtn = wx.Button(self, label='Save Queue', pos=(5, 395), size=(90, 30))
+        loadQueueBtn = wx.Button(self, label='Load Queue', pos=(100, 430), size=(90, 30))
 
         # Bind buttons to their actions
         runAllBtn.Bind(wx.EVT_BUTTON, self.runAllBtnPress)
