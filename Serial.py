@@ -12,6 +12,13 @@ class SerialComms:
     # serial = serial.Serial('COM3', 9600, timeout=1)
     # serial.open()
 
+    # Function periodically called to check if there is anything waiting to be read from the serial connection and read it in if so
+    def SerialCheck():
+        if serial.in_waiting > 0:
+            self = SerialComms
+            self.SerialRead()
+
+
     # Function to write lines to the serial com
     def SerialWrite(string):
         global waiting
@@ -19,8 +26,10 @@ class SerialComms:
         if waiting:  # If the arm is waiting for a command, send the command, if not, add it to the queue
             serial.write(string)
             waiting = False
+            print("Command '", string, "' sent")
         else:
             queue.put(string)
+            print("Command '", string, "' added to queue")
 
     # Function to read lines from the serial com
     def SerialRead(self):
@@ -35,7 +44,9 @@ class SerialComms:
             if queue.empty():
                 waiting = True
             else:
-                serial.write(queue.get())
+                string = queue.get()
+                serial.write(string)
+                print("Command '", string, "' sent from queue")
 
         # if position reports are received (After sending "print pos" to the robot arm), update the positions in the UI
         elif head == "Stepper 1":
