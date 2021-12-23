@@ -1,5 +1,7 @@
 import wx
 
+from Serial import SerialComms
+
 
 class AngleInputPanel(wx.Panel):
     def __init__(self, parent):
@@ -42,8 +44,10 @@ class AngleInputPanel(wx.Panel):
         value = self.tc1.GetValue()
         if not value:
             print("You didn't enter anything!")
+
         else:
             print(f'You typed: "{value}"')
+            SerialComms.SerialWrite(value)
 
     def btn2Press(self, event):
         value = self.tc2.GetValue()
@@ -51,6 +55,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
+            SerialComms.SerialWrite(value)
 
     def btn3Press(self, event):
         value = self.tc3.GetValue()
@@ -58,6 +63,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
+            SerialComms.SerialWrite(value)
 
     def btn4Press(self, event):
         value = self.tc4.GetValue()
@@ -65,6 +71,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
+            SerialComms.SerialWrite(value)
 
     def btn5Press(self, event):
         value = self.tc5.GetValue()
@@ -72,6 +79,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
+            SerialComms.SerialWrite(value)
 
     def btn6Press(self, event):
         value = self.tc6.GetValue()
@@ -79,3 +87,4 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
+            SerialComms.SerialWrite(value)

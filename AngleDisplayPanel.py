@@ -1,6 +1,5 @@
 import wx
 
-
 class AngleDisplayPanel(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent=parent, pos=(5, 5), size=(200, 200), style=wx.SUNKEN_BORDER)

@@ -1,5 +1,7 @@
 import wx
 
+from Serial import SerialComms
+
 
 class ZeroCommands(wx.Panel):
     def __init__(self, parent):

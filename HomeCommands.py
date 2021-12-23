@@ -1,5 +1,7 @@
 import wx
 
+from Serial import SerialComms
+
 
 class HomeCommands(wx.Panel):
     def __init__(self, parent):
@@ -40,13 +42,19 @@ class HomeCommands(wx.Panel):
         print("Home Button Pressed")
         if self.chk1.GetValue():
             print("Homing joint 1")
+            SerialComms.SerialWrite("home 1")
         if self.chk2.GetValue():
             print("Homing joint 2")
+            SerialComms.SerialWrite("home 2")
         if self.chk3.GetValue():
             print("Homing joint 3")
+            SerialComms.SerialWrite("home 3")
         if self.chk4.GetValue():
             print("Homing joint 4")
+            SerialComms.SerialWrite("home 4")
         if self.chk5.GetValue():
             print("Homing joint 5")
+            SerialComms.SerialWrite("home 5")
         if self.chk6.GetValue():
             print("Homing joint 6")
+            SerialComms.SerialWrite("home 6")

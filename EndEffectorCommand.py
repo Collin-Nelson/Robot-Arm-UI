@@ -1,5 +1,7 @@
 import wx
 
+from Serial import SerialComms
+
 
 class EndEffectorCommand(wx.Panel):
     def __init__(self, parent):
