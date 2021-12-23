@@ -12,7 +12,7 @@
 # [X] TODO Add a button and code to the angle input panel to move all joints to the currently set positions at the same time
 # [X] TODO Make buttons process text and send serial commands when pushed
 # [X] TODO Write code to regularly send "print pos" and "LS status" regularly to arm to get info
-# [X] TODO Write code to check serial buffer and call SerialRead() when there is something availible
+# [X] TODO Write code to check serial buffer and call SerialRead() when there is something available
 
 # LESS IMPORTANT
 # [] TODO Implement dynamic size and position within the window and each panel

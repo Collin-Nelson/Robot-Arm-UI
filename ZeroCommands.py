@@ -5,7 +5,7 @@ from Serial import SerialComms
 
 class ZeroCommands(wx.Panel):
     def __init__(self, parent):
-        wx.Panel.__init__(self, parent=parent, pos=(620, 5), size=(200, 230), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, pos=(620, 235), size=(200, 230), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label="Zeroing", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')

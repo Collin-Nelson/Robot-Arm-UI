@@ -6,7 +6,7 @@ from HomeCommands import HomeCommands
 from ZeroCommands import ZeroCommands
 from TextCommand import TextCommand
 from EndEffectorCommand import EndEffectorCommand
-
+from ConsoleOutput import ConsoleOutputPanel
 
 class MainFrame(wx.Frame):
     def __init__(self):
@@ -39,6 +39,8 @@ class ControlTab(wx.Panel):
         self.Panel = ZeroCommands(self)
         self.Panel = TextCommand(self)
         self.Panel = EndEffectorCommand(self)
+        self.Panel = ConsoleOutputPanel(self)
+
 
 
 class Tab2(wx.Panel):
