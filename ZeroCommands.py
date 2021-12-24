@@ -16,10 +16,10 @@ class ZeroCommands(wx.Panel):
         title.SetFont(font)
 
         # Button to zero selected axes
-        zeroBtn = wx.Button(self, label='Zero Selected Axes', pos=(5, 20))
+        zero_btn = wx.Button(self, label='Zero Selected Axes', pos=(5, 20))
 
         # Bind zero button to its action
-        zeroBtn.Bind(wx.EVT_BUTTON, self.zeroBtnPress)
+        zero_btn.Bind(wx.EVT_BUTTON, self.zero_btn_press)
 
         # Checkbox for each axis to zero
         self.chk1 = wx.CheckBox(self, label="Joint 1", pos=(10, 50))
@@ -38,27 +38,27 @@ class ZeroCommands(wx.Panel):
         self.chk6.SetValue(1)
 
     # Deals with zero button press
-    def zeroBtnPress(self, event):
+    def zero_btn_press(self, event):
         print("Zero Button Pressed")
         if self.chk1.GetValue() and self.chk2.GetValue() and self.chk3.GetValue() and self.chk4.GetValue() and self.chk5.GetValue() and self.chk6.GetValue():
             print("Zeroing all joints")
-            SerialComms.SerialWrite("zero")
+            SerialComms.serial_write(self, "zero")
         else:
             if self.chk1.GetValue():
                 print("Zeroing joint 1")
-                SerialComms.SerialWrite("zero 1")
+                SerialComms.serial_write(self, "zero 1")
             if self.chk2.GetValue():
                 print("Zeroing joint 2")
-                SerialComms.SerialWrite("zero 2")
+                SerialComms.serial_write(self, "zero 2")
             if self.chk3.GetValue():
                 print("Zeroing joint 3")
-                SerialComms.SerialWrite("zero 3")
+                SerialComms.serial_write(self, "zero 3")
             if self.chk4.GetValue():
                 print("Zeroing joint 4")
-                SerialComms.SerialWrite("zero 4")
+                SerialComms.serial_write(self, "zero 4")
             if self.chk5.GetValue():
                 print("Zeroing joint 5")
-                SerialComms.SerialWrite("zero 5")
+                SerialComms.serial_write(self, "zero 5")
             if self.chk6.GetValue():
                 print("Zeroing joint 6")
-                SerialComms.SerialWrite("zero 6")
+                SerialComms.serial_write(self, "zero 6")

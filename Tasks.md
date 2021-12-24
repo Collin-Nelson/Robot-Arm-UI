@@ -14,7 +14,39 @@
 # [X] TODO Write code to regularly send "print pos" and "LS status" regularly to arm to get info
 # [X] TODO Write code to check serial buffer and call SerialRead() when there is something available
 # [X] TODO Add the ability to control the gripper to the poses queue tab
-# [] TODO Get serial running with teensy hardware, then uncomment SerialComms call in PosesQueuePanel and test
+# [X] TODO Get serial running with teensy hardware, then uncomment SerialComms call in PosesQueuePanel and test
+# [X] TODO Add code to deal with data read from serial
+# [] TODO Make sure the code in the while loop in main() can run in parallel with the app.mainloop() loop - while loop has been moved to serial in on_timer
+# [X] TODO Add methods to set tc1-6 and LS statuses on the AngleDisplayPanel
+# [] TODO Fix only one joint homing if at least one joint is unchecked
+# [] TODO rework all code to properly use classes and pass around the correct info (class instances)
+    # [X] TODO Make AngleDisplayPanel pythonic and no errors except passing wrong "self"
+    # [X] TODO Make AngleInputPanel pythonic and no errors except passing wrong "self"
+    # [X] TODO Make ConsoleOutput pythonic and no errors except passing wrong "self"
+    # [X] TODO Make EndEffectorCommand pythonic and no errors except passing wrong "self"
+    # [X] TODO Make HomeCommand pythonic and no errors except passing wrong "self"
+    # [X] TODO Make main pythonic and no errors except passing wrong "self"
+    # [X] TODO Make MainFrame pythonic and no errors except passing wrong "self"
+    # [X] TODO Make PosesGeneratorPanel pythonic and no errors except passing wrong "self"
+    # [X] TODO Make PosesQueuePanel pythonic and no errors except passing wrong "self"
+    # [X] TODO Make Serial pythonic and no errors except passing wrong "self"
+    # [X] TODO Make TextCommand pythonic and no errors except passing wrong "self"
+    # [X] TODO Make ZeroCommands pythonic and no errors except passing wrong "self"
+    # [] TODO fix erros for wrong "self" in AngleDisplayPanel
+    # [] TODO fix erros for wrong "self" in  AngleInputPanel
+    # [] TODO fix erros for wrong "self" in  ConsoleOutput
+    # [] TODO fix erros for wrong "self" in  EndEffectorCommand
+    # [] TODO fix erros for wrong "self" in  HomeCommand
+    # [] TODO fix erros for wrong "self" in  main
+    # [] TODO fix erros for wrong "self" in  MainFrame
+    # [] TODO fix erros for wrong "self" in  PosesGeneratorPanel
+    # [] TODO fix erros for wrong "self" in  PosesQueuePanel
+    # [] TODO fix erros for wrong "self" in  Serial
+    # [] TODO fix erros for wrong "self" in  TextCommand
+    # [] TODO fix erros for wrong "self" in  ZeroCommands
+
+# [] TODO make or pass an AngleDisplayPanel instance to Serial to call the methods to set LS and angle statuses
+
 
 # LESS IMPORTANT
 # [] TODO Add another tab to UI to set acceleration, max speed, angle range, LS position, etc parameters, etc

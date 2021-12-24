@@ -18,41 +18,41 @@ class PosesQueuePanel(wx.Panel):
         tcQueue = wx.TextCtrl(self, pos=(5, 30), size=(185, 355), style=wx.TE_MULTILINE | wx.TE_READONLY | wx.HSCROLL)
 
         # Button to run or clear or save or load the pose queue
-        runAllBtn = wx.Button(self, label='Run Queue', pos=(5, 430), size=(90, 30))
-        clearAllBtn = wx.Button(self, label='Clear Queue', pos=(100, 395), size=(90, 30))
-        saveAllBtn = wx.Button(self, label='Save Queue', pos=(5, 395), size=(90, 30))
-        loadQueueBtn = wx.Button(self, label='Load Queue', pos=(100, 430), size=(90, 30))
+        run_all_btn = wx.Button(self, label='Run Queue', pos=(5, 430), size=(90, 30))
+        clear_all_btn = wx.Button(self, label='Clear Queue', pos=(100, 395), size=(90, 30))
+        save_all_btn = wx.Button(self, label='Save Queue', pos=(5, 395), size=(90, 30))
+        load_queue_btn = wx.Button(self, label='Load Queue', pos=(100, 430), size=(90, 30))
 
         # Bind buttons to their actions
-        runAllBtn.Bind(wx.EVT_BUTTON, self.runAllBtnPress)
-        clearAllBtn.Bind(wx.EVT_BUTTON, self.clearAllBtnPress)
-        saveAllBtn.Bind(wx.EVT_BUTTON, self.saveAllBtnPress)
-        loadQueueBtn.Bind(wx.EVT_BUTTON, self.loadQueueBtnPress)
+        run_all_btn.Bind(wx.EVT_BUTTON, self.run_all_btn_press)
+        clear_all_btn.Bind(wx.EVT_BUTTON, self.clear_all_btn_press)
+        save_all_btn.Bind(wx.EVT_BUTTON, self.save_all_btn_press)
+        load_queue_btn.Bind(wx.EVT_BUTTON, self.load_queue_btn_press)
 
     # Actions for button
-    def runAllBtnPress(self, event):
+    def run_all_btn_press(self, event):
         num = tcQueue.GetNumberOfLines()
         for i in range(num - 1):
-            lineLen = tcQueue.GetLineLength(0)
-            # SerialComms.SerialWrite(tcQueue.GetLineText(0))
+            line_len = tcQueue.GetLineLength(0)
+            SerialComms.serial_write(self, tcQueue.GetLineText(0))
             print(tcQueue.GetLineText(0))
-            tcQueue.Remove(0, lineLen + 2)
+            tcQueue.Remove(0, line_len + 2)
 
-    def clearAllBtnPress(self, event):
+    def clear_all_btn_press(self, event):
         while tcQueue.GetNumberOfLines() > 1:
             len = tcQueue.GetLineLength(0)
             tcQueue.Remove(0, len + 2)
 
-    def saveAllBtnPress(self, event):
+    def save_all_btn_press(self, event):
         dialog = wx.FileDialog(self, 'Choose a file')
         if dialog.ShowModal() == wx.ID_OK:
             self.filename = dialog.GetFilename()
-            savefile = open(self.filename, 'w')  # open the file (self.filename) to store our saved data
-            savefile.write(
+            save_file = open(self.filename, 'w')  # open the file (self.filename) to store our saved data
+            save_file.write(
                 tcQueue.GetValue())  # get our text from the textctrl, and write it out to the file we just opened.
-            savefile.close()  # and then close the file.
+            save_file.close()  # and then close the file.
 
-    def loadQueueBtnPress(self, event):
+    def load_queue_btn_press(self, event):
         dialog = wx.FileDialog(self, 'Choose a File')
         if dialog.ShowModal() == wx.ID_OK:
             self.filename = dialog.GetFilename()
@@ -62,5 +62,5 @@ class PosesQueuePanel(wx.Panel):
                 tcQueue.write(line)
             loadfile.close()
 
-    def AddToQueue(string):
+    def add_to_queue(self, string):
         tcQueue.write(string)

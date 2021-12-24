@@ -16,18 +16,18 @@ class EndEffectorCommand(wx.Panel):
         title.SetFont(font)
 
         # Buttons to open and close end effector
-        openBtn = wx.Button(self, label='Open', pos=(10, 30))
-        closeBtn = wx.Button(self, label='Close', pos=(10, 60))
+        open_btn = wx.Button(self, label='Open', pos=(10, 30))
+        close_btn = wx.Button(self, label='Close', pos=(10, 60))
 
         # Bind buttons to actions
-        openBtn.Bind(wx.EVT_BUTTON, self.openBtnPress)
-        closeBtn.Bind(wx.EVT_BUTTON, self.closeBtnPress)
+        open_btn.Bind(wx.EVT_BUTTON, self.open_btn_press)
+        close_btn.Bind(wx.EVT_BUTTON, self.close_btn_press)
 
     # Deals with button presses
-    def openBtnPress(self, event):
+    def open_btn_press(self, event):
         print("Opening Gripper")
-        SerialComms.SerialWrite('7:180')
+        SerialComms.serial_write(self, '7:180')
 
-    def closeBtnPress(self, event):
+    def close_btn_press(self, event):
         print("Closing Gripper")
-        SerialComms.SerialWrite('7:0')
+        SerialComms.serial_write(self, '7:0')

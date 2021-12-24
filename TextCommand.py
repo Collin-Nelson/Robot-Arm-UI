@@ -19,14 +19,14 @@ class TextCommand(wx.Panel):
         self.comtc = wx.TextCtrl(self, pos=(35, 40))
 
         # Button to send command string
-        comBtn = wx.Button(self, label='Send Command String', pos=(20, 70))
+        com_btn = wx.Button(self, label='Send Command String', pos=(20, 70))
 
         # Bind zero button to its action
-        comBtn.Bind(wx.EVT_BUTTON, self.comBtnPress)
+        com_btn.Bind(wx.EVT_BUTTON, self.com_btn_press)
 
     # Deals with zero button press
-    def comBtnPress(self, event):
+    def com_btn_press(self, event):
         value = self.comtc.GetValue()
         print("Send Command Button Pressed")
         print(f"Command string is:", value)
-        SerialComms.SerialWrite(value)
+        SerialComms.serial_write(self, value)

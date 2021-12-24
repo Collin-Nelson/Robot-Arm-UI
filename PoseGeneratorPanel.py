@@ -50,12 +50,12 @@ class PoseGeneratorPanel(wx.Panel):
         btn3 = wx.Button(self, label='Close Gripper', pos=(95, 235), size=(85, 30))
 
         # Bind buttons to actions
-        btn1.Bind(wx.EVT_BUTTON, self.btn1Press)
-        btn2.Bind(wx.EVT_BUTTON, self.btn2Press)
-        btn3.Bind(wx.EVT_BUTTON, self.btn3Press)
+        btn1.Bind(wx.EVT_BUTTON, self.btn1_press)
+        btn2.Bind(wx.EVT_BUTTON, self.btn2_press)
+        btn3.Bind(wx.EVT_BUTTON, self.btn3_press)
 
     # Actions for button
-    def btn1Press(self, event):
+    def btn1_press(self, event):
         value1 = self.tc1.GetValue()
         value2 = self.tc2.GetValue()
         value3 = self.tc3.GetValue()
@@ -85,11 +85,11 @@ class PoseGeneratorPanel(wx.Panel):
         self.tc5.SetValue("")
         self.tc6.SetValue("")
 
-        PosesQueuePanel.AddToQueue(
-            "1:" + value1 + ".2:" + value2 + ".3:" + value3 + ".4:" + value4 + ".5:" + value5 + ".6:" + value6 + "\n")
+        PosesQueuePanel.add_to_queue(self, "1:" + value1 + ".2:" + value2 + ".3:" +
+                                     value3 + ".4:" + value4 + ".5:" + value5 + ".6:" + value6 + "\n")
 
-    def btn2Press(self, event):
-        PosesQueuePanel.AddToQueue("7:180\n")
+    def btn2_press(self, event):
+        PosesQueuePanel.add_to_queue(self, "7:180\n")
 
-    def btn3Press(self, event):
-        PosesQueuePanel.AddToQueue("7:0\n")
+    def btn3_press(self, event):
+        PosesQueuePanel.add_to_queue(self, "7:0\n")

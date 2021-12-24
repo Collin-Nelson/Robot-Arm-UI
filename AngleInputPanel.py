@@ -32,67 +32,66 @@ class AngleInputPanel(wx.Panel):
         btn5 = wx.Button(self, label='Move J5', pos=(5, 140))
         btn6 = wx.Button(self, label='Move J6', pos=(5, 170))
 
-
         # Bind each button to its action
-        btn1.Bind(wx.EVT_BUTTON, self.btn1Press)
-        btn2.Bind(wx.EVT_BUTTON, self.btn2Press)
-        btn3.Bind(wx.EVT_BUTTON, self.btn3Press)
-        btn4.Bind(wx.EVT_BUTTON, self.btn4Press)
-        btn5.Bind(wx.EVT_BUTTON, self.btn5Press)
-        btn6.Bind(wx.EVT_BUTTON, self.btn6Press)
-        btn7.Bind(wx.EVT_BUTTON, self.btn7Press)
+        btn1.Bind(wx.EVT_BUTTON, self.btn1_press)
+        btn2.Bind(wx.EVT_BUTTON, self.btn2_press)
+        btn3.Bind(wx.EVT_BUTTON, self.btn3_press)
+        btn4.Bind(wx.EVT_BUTTON, self.btn4_press)
+        btn5.Bind(wx.EVT_BUTTON, self.btn5_press)
+        btn6.Bind(wx.EVT_BUTTON, self.btn6_press)
+        btn7.Bind(wx.EVT_BUTTON, self.btn7_press)
 
     # Actions for each button
-    def btn1Press(self, event):
+    def btn1_press(self, event):
         value = self.tc1.GetValue()
         if not value:
             print("You didn't enter anything!")
 
         else:
             print(f'You typed: "{value}"')
-            SerialComms.SerialWrite("1:" + value)
+            SerialComms.serial_write(self, "1:" + value)
 
-    def btn2Press(self, event):
+    def btn2_press(self, event):
         value = self.tc2.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.SerialWrite("2:" + value)
+            SerialComms.serial_write(self, "2:" + value)
 
-    def btn3Press(self, event):
+    def btn3_press(self, event):
         value = self.tc3.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.SerialWrite("3:" + value)
+            SerialComms.serial_write(self, "3:" + value)
 
-    def btn4Press(self, event):
+    def btn4_press(self, event):
         value = self.tc4.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.SerialWrite("4:" + value)
+            SerialComms.serial_write(self, "4:" + value)
 
-    def btn5Press(self, event):
+    def btn5_press(self, event):
         value = self.tc5.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.SerialWrite("5:" + value)
+            SerialComms.serial_write(self, "5:" + value)
 
-    def btn6Press(self, event):
+    def btn6_press(self, event):
         value = self.tc6.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.SerialWrite("6:" + value)
+            SerialComms.serial_write(self, "6:" + value)
 
-    def btn7Press(self, event):
+    def btn7_press(self, event):
         value1 = self.tc1.GetValue()
         value2 = self.tc2.GetValue()
         value3 = self.tc3.GetValue()
@@ -100,5 +99,19 @@ class AngleInputPanel(wx.Panel):
         value5 = self.tc5.GetValue()
         value6 = self.tc6.GetValue()
 
-        SerialComms.SerialWrite(
-            "1:" + value1 + ".2:" + value2 + ".3:" + value3 + ".4:" + value4 + ".5:" + value5 + ".6:" + value6)
+        # set null values to zero
+        if value1 == "":
+            value1 = "0"
+        if value2 == "":
+            value2 = "0"
+        if value3 == "":
+            value3 = "0"
+        if value4 == "":
+            value4 = "0"
+        if value5 == "":
+            value5 = "0"
+        if value6 == "":
+            value6 = "0"
+
+        SerialComms.serial_write(self, "1:" + value1 + ".2:" + value2 + ".3:" + value3 +
+                                 ".4:" + value4 + ".5:" + value5 + ".6:" + value6)

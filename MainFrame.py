@@ -10,6 +10,7 @@ from ConsoleOutput import ConsoleOutputPanel
 from PosesQueuePanel import PosesQueuePanel
 from PoseGeneratorPanel import PoseGeneratorPanel
 
+
 class MainFrame(wx.Frame):
     def __init__(self):
         super().__init__(parent=None, title='Robot Arm UI', size=(1250, 750))
@@ -55,7 +56,7 @@ class PoseQueueTab(wx.Panel):
 
         self.Panel = PosesQueuePanel(self)
         self.Panel = PoseGeneratorPanel(self)
-        self.Panel = ConsoleOutputPanel(self)
+        # self.Panel = ConsoleOutputPanel(self)
 
 
 class ParametersTab(wx.Panel):
