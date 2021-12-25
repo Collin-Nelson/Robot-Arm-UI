@@ -39,14 +39,14 @@
 # [X] TODO fix erros for wrong "self" in PosesQueuePanel
 # [X] TODO fix erros for wrong "self" in TextCommand
 # [X] TODO fix erros for wrong "self" in ZeroCommands
-# [] TODO fix erros for wrong "self" in Serial - Needs AngleDisplayPanel - How to get the instance of AngleDispalyPanel to serial?
-# [] TODO fix buttons only being pressable once/getting pressed on startup (possibly related to above or below issue)
+# [X] TODO fix erros for wrong "self" in Serial - Needs AngleDisplayPanel - How to get the instance of AngleDispalyPanel to serial?
+# [X] TODO rework all code to properly use classes and pass around the correct info (class instances) - possibly pass serial down the tree from main?
+# [X] TODO fix buttons only being pressable once/getting pressed on startup (possibly related to above or below issue)
+# [X] TODO Fix only one joint homing if at least one joint is unchecked
+# [X] TODO fix run queue button on second tab of UI
+# [X] TODO look at scope of "filename" in PosesQueuePanel
 # [] TODO Make sure the code in the while loop in main() can run in parallel with the app.mainloop() loop - while loop has been moved to serial in on_timer
-# [] TODO Fix only one joint homing if at least one joint is unchecked
-# [] TODO rework all code to properly use classes and pass around the correct info (class instances) - possibly pass serial down the tree from main?
 
-    
-# TODO look at scope of "filename" in PosesQueuePanel
 
 # LESS IMPORTANT
 # [] TODO Add another tab to UI to set acceleration, max speed, angle range, LS position, etc parameters, etc

@@ -5,6 +5,10 @@ class PosesQueuePanel(wx.Panel):
     def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent=parent, pos=(415, 5), size=(200, 465), style=wx.SUNKEN_BORDER)
 
+        self.serial = serial
+
+        self.filename = "temp"
+
         title = wx.StaticText(self, label="Pose Queue", pos=(5, 5), size=(200, 20), style=wx.ALIGN_LEFT)
         self.SetBackgroundColour('white')
         font = title.GetFont()
@@ -23,24 +27,24 @@ class PosesQueuePanel(wx.Panel):
         load_queue_btn = wx.Button(self, label='Load Queue', pos=(100, 430), size=(90, 30))
 
         # Bind buttons to their actions
-        run_all_btn.Bind(wx.EVT_BUTTON, self.run_all_btn_press(self, serial))
+        run_all_btn.Bind(wx.EVT_BUTTON, self.run_all_btn_press)
         clear_all_btn.Bind(wx.EVT_BUTTON, self.clear_all_btn_press)
         save_all_btn.Bind(wx.EVT_BUTTON, self.save_all_btn_press)
         load_queue_btn.Bind(wx.EVT_BUTTON, self.load_queue_btn_press)
 
     # Actions for button
-    def run_all_btn_press(self, event, serial):
+    def run_all_btn_press(self, event):
         num = self.tcQueue.GetNumberOfLines()
         for i in range(num - 1):
             line_len = self.tcQueue.GetLineLength(0)
-            serial.serial_write(self, self.tcQueue.GetLineText(0))
+            self.serial.serial_write(self.tcQueue.GetLineText(0))
             print(self.tcQueue.GetLineText(0))
             self.tcQueue.Remove(0, line_len + 2)
 
     def clear_all_btn_press(self, event):
         while self.tcQueue.GetNumberOfLines() > 1:
-            len = self.tcQueue.GetLineLength(0)
-            self.tcQueue.Remove(0, len + 2)
+            length = self.tcQueue.GetLineLength(0)
+            self.tcQueue.Remove(0, length + 2)
 
     def save_all_btn_press(self, event):
         dialog = wx.FileDialog(self, 'Choose a file')

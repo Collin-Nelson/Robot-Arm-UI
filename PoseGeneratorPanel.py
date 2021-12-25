@@ -5,6 +5,8 @@ class PoseGeneratorPanel(wx.Panel):
     def __init__(self, parent, poses_queue_panel):
         wx.Panel.__init__(self, parent=parent, pos=(620, 5), size=(200, 275), style=wx.SUNKEN_BORDER)
 
+        self.poses_queue_panel = poses_queue_panel
+
         title = wx.StaticText(self, label="Pose Angle Inputs", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
 
@@ -48,12 +50,12 @@ class PoseGeneratorPanel(wx.Panel):
         btn3 = wx.Button(self, label='Close Gripper', pos=(95, 235), size=(85, 30))
 
         # Bind buttons to actions
-        btn1.Bind(wx.EVT_BUTTON, self.btn1_press(self, poses_queue_panel))
-        btn2.Bind(wx.EVT_BUTTON, self.btn2_press(self, poses_queue_panel))
-        btn3.Bind(wx.EVT_BUTTON, self.btn3_press(self, poses_queue_panel))
+        btn1.Bind(wx.EVT_BUTTON, self.btn1_press)
+        btn2.Bind(wx.EVT_BUTTON, self.btn2_press)
+        btn3.Bind(wx.EVT_BUTTON, self.btn3_press)
 
     # Actions for button
-    def btn1_press(self, event, poses_queue_panel):
+    def btn1_press(self, event):
         print("Add to queue button pressed")
         value1 = self.tc1.GetValue()
         value2 = self.tc2.GetValue()
@@ -84,13 +86,13 @@ class PoseGeneratorPanel(wx.Panel):
         self.tc5.SetValue("")
         self.tc6.SetValue("")
 
-        poses_queue_panel.add_to_queue("1:" + value1 + ".2:" + value2 + ".3:" +
-                                       value3 + ".4:" + value4 + ".5:" + value5 + ".6:" + value6 + "\n")
+        self.poses_queue_panel.add_to_queue("1:" + value1 + ".2:" + value2 + ".3:" +
+                                            value3 + ".4:" + value4 + ".5:" + value5 + ".6:" + value6 + "\n")
 
-    def btn2_press(self, event, poses_queue_panel):
+    def btn2_press(self, event):
         print("Open gripper button pressed")
-        poses_queue_panel.add_to_queue("7:180\n")
+        self.poses_queue_panel.add_to_queue("7:180\n")
 
-    def btn3_press(self, event, poses_queue_panel):
+    def btn3_press(self, event):
         print("Close gripper button pressed")
-        poses_queue_panel.add_to_queue("7:0\n")
+        self.poses_queue_panel.add_to_queue("7:0\n")

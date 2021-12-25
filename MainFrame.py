@@ -39,13 +39,14 @@ class ControlTab(wx.Panel):
         self.SetBackgroundColour('gray')
 
         self.Panel = AngleDisplayPanel(self)
+        serial.pass_angle_display_panel(self.Panel)
+
         self.Panel = AngleInputPanel(self, serial)
         self.Panel = HomeCommands(self, serial)
         self.Panel = ZeroCommands(self, serial)
         self.Panel = TextCommand(self, serial)
         self.Panel = EndEffectorCommand(self, serial)
         self.Panel = ConsoleOutputPanel(self, serial)
-
 
 class PoseQueueTab(wx.Panel):
     def __init__(self, parent, serial):
@@ -56,7 +57,7 @@ class PoseQueueTab(wx.Panel):
 
         self.Panel = PosesQueuePanel(self, serial)
         self.Panel = PoseGeneratorPanel(self, self.Panel)
-        self.Panel = ConsoleOutputPanel(self, serial)
+        # self.Panel = ConsoleOutputPanel(self, serial)
 
 
 class ParametersTab(wx.Panel):

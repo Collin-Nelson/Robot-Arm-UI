@@ -5,6 +5,8 @@ class EndEffectorCommand(wx.Panel):
     def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent=parent, pos=(825, 240), size=(200, 230), style=wx.SUNKEN_BORDER)
 
+        self.serial = serial
+
         title = wx.StaticText(self, label="End Effector Command", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
 
@@ -18,14 +20,14 @@ class EndEffectorCommand(wx.Panel):
         close_btn = wx.Button(self, label='Close', pos=(10, 60))
 
         # Bind buttons to actions
-        open_btn.Bind(wx.EVT_BUTTON, self.open_btn_press(self, serial))
-        close_btn.Bind(wx.EVT_BUTTON, self.close_btn_press(self, serial))
+        open_btn.Bind(wx.EVT_BUTTON, self.open_btn_press)
+        close_btn.Bind(wx.EVT_BUTTON, self.close_btn_press)
 
     # Deals with button presses
-    def open_btn_press(self, event, serial):
+    def open_btn_press(self, event):
         print("Opening Gripper")
-        serial.serial_write('7:180')
+        self.serial.serial_write('7:180')
 
-    def close_btn_press(self, event, serial):
+    def close_btn_press(self, event):
         print("Closing Gripper")
-        serial.serial_write('7:0')
+        self.serial.serial_write('7:0')
