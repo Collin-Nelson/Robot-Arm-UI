@@ -49,7 +49,7 @@ class AngleInputPanel(wx.Panel):
 
         else:
             print(f'You typed: "{value}"')
-            self.serial.serial_write(self, "1:" + value)
+            self.serial.serial_write("1:" + value)
 
     def btn2_press(self, event):
         value = self.tc2.GetValue()
@@ -57,7 +57,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            self.serial.serial_write(self, "2:" + value)
+            self.serial.serial_write("2:" + value)
 
     def btn3_press(self, event):
         value = self.tc3.GetValue()
@@ -65,7 +65,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            self.serial.serial_write(self, "3:" + value)
+            self.serial.serial_write("3:" + value)
 
     def btn4_press(self, event):
         value = self.tc4.GetValue()
@@ -73,7 +73,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            self.serial.serial_write(self, "4:" + value)
+            self.serial.serial_write("4:" + value)
 
     def btn5_press(self, event):
         value = self.tc5.GetValue()
@@ -81,7 +81,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            self.serial.serial_write(self, "5:" + value)
+            self.serial.serial_write("5:" + value)
 
     def btn6_press(self, event):
         value = self.tc6.GetValue()
@@ -89,7 +89,7 @@ class AngleInputPanel(wx.Panel):
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            self.serial.serial_write(self, "6:" + value)
+            self.serial.serial_write("6:" + value)
 
     def btn7_press(self, event):
         value1 = self.tc1.GetValue()

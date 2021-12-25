@@ -1,9 +1,13 @@
 import wx
 
+from random import random
+
 
 class AngleDisplayPanel(wx.Panel):
-    def __init__(self, parent):
+    def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent=parent, pos=(620, 5), size=(200, 230), style=wx.SUNKEN_BORDER)
+
+        serial.pass_angle_display_panel(self)
 
         title = wx.StaticText(self, label="Joint Angle Display", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
         self.SetBackgroundColour('white')
@@ -57,35 +61,37 @@ class AngleDisplayPanel(wx.Panel):
 
     def set_ls_status_light(self, ls_index, status):
         if ls_index == 1:
-            if status == 0:
+            if status == "0":
                 self.statusLight1.SetBackgroundColour('white')
-            elif status == 1:
+            elif status == "1":
                 self.statusLight1.SetBackgroundColour('green')
         elif ls_index == 2:
-            if status == 0:
+            if status == "0":
                 self.statusLight2.SetBackgroundColour('white')
-            elif status == 1:
+            elif status == "1":
                 self.statusLight2.SetBackgroundColour('green')
         elif ls_index == 3:
-            if status == 0:
+            if status == "0":
                 self.statusLight3.SetBackgroundColour('white')
-            elif status == 1:
+            elif status == "1":
                 self.statusLight3.SetBackgroundColour('green')
         elif ls_index == 4:
-            if status == 0:
+            if status == "0":
                 self.statusLight4.SetBackgroundColour('white')
-            elif status == 1:
+            elif status == "1":
                 self.statusLight4.SetBackgroundColour('green')
         elif ls_index == 5:
-            if status == 0:
+            if status == "0":
                 self.statusLight5.SetBackgroundColour('white')
-            elif status == 1:
+            elif status == "1":
                 self.statusLight5.SetBackgroundColour('green')
         elif ls_index == 6:
-            if status == 0:
+            if status == "0":
                 self.statusLight6.SetBackgroundColour('white')
-            elif status == 1:
+            elif status == "1":
                 self.statusLight6.SetBackgroundColour('green')
+
+        self.Refresh()
 
     def set_joint_angle(self, joint_id, angle):
         if joint_id == 1:

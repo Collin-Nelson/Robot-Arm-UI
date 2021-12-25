@@ -1,10 +1,6 @@
 # File to handle all of the serial communication with the robot arm
 
-import wx, serial, queue, time
-from AngleDisplayPanel import AngleDisplayPanel
-
-
-
+import serial, queue
 
 
 class SerialComms:
@@ -13,26 +9,20 @@ class SerialComms:
         print("init SerialComms")
 
         self.queue = queue.Queue()
-        self.waiting = False
+        self.waiting = True
         # Start serial connection - uncomment lines below when hardware connected
-        self.ser = serial.Serial('COM3', 9600, timeout=1)
+        self.ser = serial.Serial('COM3', 57600, timeout=1)
 
     def pass_angle_display_panel(self, angle_disp_panel):
         global angle_display_panel
         angle_display_panel = angle_disp_panel
 
-    def on_timer(self):
-        self.serial_check()
-        self.serial_write("print pos")
-        self.serial_write("LS status")
-
-        # wx.CallLater(self, 1000, self.on_timer(), self)
-
     # Function periodically called to check if there is anything waiting to be read from the serial connection and
     # read it in if so
     def serial_check(self):
-        print("Serial Check")
-        if self.ser.in_waiting > 0:
+        while self.ser.in_waiting > 0:
+            # self.serial_write_no_print("print pos")
+            # self.serial_write_no_print("LS status")
             self.serial_read()
 
     # Function to write lines to the serial com
@@ -46,6 +36,15 @@ class SerialComms:
             self.queue.put(string)
             print("Command '", string, "' added to queue \n")
 
+    # Same function as serial_write, but without print statements
+    def serial_write_no_print(self, string):
+        if self.waiting:  # If the arm is waiting for a command, send the command, if not, add it to the queue
+            my_str = string.encode('utf-8')
+            self.ser.write(my_str)
+            self.waiting = False
+        else:
+            self.queue.put(string)
+
     # Function to force send the next command in the serial command queue
     def serial_force_send(self):
         if self.queue.empty():
@@ -58,60 +57,61 @@ class SerialComms:
 
     # Function to read lines from the serial com
     def serial_read(self):
-        self.waiting
-
-        print("Reading from serial")
-
         line = self.ser.readline()
-        print(line)
+        line = line.decode("utf-8")
+        line = line.strip()
+        # print(line)
 
         # if move is received, send the next command from the queue. If there is no command,
         # set the bool waiting to true to indicate the next command should be sent immediately
-        head, sep, tail = line.partition(bytes(': ', 'utf-8'))
+        head, sep, tail = line.partition(': ')
+        # tail = tail.strip()
+
         if line == "Move?":
             if self.queue.empty():
                 self.waiting = True
             else:
                 string = self.queue.get()
-                self.ser.write(string)
+                my_str = string.encode('utf-8')
+                self.ser.write(my_str)
                 print("Command '", string, "' sent from queue")
 
         # if position reports are received (After sending "print pos" to the robot arm), update the positions in the UI
         elif head == "Stepper 1":
             # Set position field for J1 in the UI to be tail
-            AngleDisplayPanel.set_joint_angle(angle_display_panel, 1, tail)
+            angle_display_panel.set_joint_angle(1, tail)
         elif head == "Stepper 2":
             # Set position field for J2 in the UI to be tail
-            AngleDisplayPanel.set_joint_angle(angle_display_panel, 2, tail)
+            angle_display_panel.set_joint_angle(2, tail)
         elif head == "Stepper 3":
             # Set position field for J3 in the UI to be tail
-            AngleDisplayPanel.set_joint_angle(angle_display_panel, 3, tail)
+            angle_display_panel.set_joint_angle(3, tail)
         elif head == "Stepper 4":
             # Set position field for J4 in the UI to be tail
-            AngleDisplayPanel.set_joint_angle(angle_display_panel, 4, tail)
+            angle_display_panel.set_joint_angle(4, tail)
         elif head == "Stepper 5":
             # Set position field for J5 in the UI to be tail
-            AngleDisplayPanel.set_joint_angle(angle_display_panel, 5, tail)
+            angle_display_panel.set_joint_angle(5, tail)
         elif head == "Stepper 6":
             # Set position field for J6 in the UI to be tail
-            AngleDisplayPanel.set_joint_angle(angle_display_panel, 6, tail)
+            angle_display_panel.set_joint_angle(6, tail)
 
         # if limit switch reports are received, update the UI to show which are triggered and which are not
         elif head == "LS1":
             # Set LS status for J1 in the UI
-            AngleDisplayPanel.set_ls_status_light(angle_display_panel, 1, tail)
+            angle_display_panel.set_ls_status_light(1, tail)
         elif head == "LS2":
             # Set LS status for J2 in the UI
-            AngleDisplayPanel.set_ls_status_light(angle_display_panel, 2, tail)
+            angle_display_panel.set_ls_status_light(2, tail)
         elif head == "LS3":
             # Set LS status for J3 in the UI
-            AngleDisplayPanel.set_ls_status_light(angle_display_panel, 3, tail)
+            angle_display_panel.set_ls_status_light(3, tail)
         elif head == "LS4":
             # Set LS status for J4 in the UI
-            AngleDisplayPanel.set_ls_status_light(angle_display_panel, 4, tail)
+            angle_display_panel.set_ls_status_light(4, tail)
         elif head == "LS5":
             # Set LS status for J5 in the UI
-            AngleDisplayPanel.set_ls_status_light(angle_display_panel, 5, tail)
+            angle_display_panel.set_ls_status_light(5, tail)
         elif head == "LS6":
             # Set LS status for J6 in the UI
-            AngleDisplayPanel.set_ls_status_light(angle_display_panel, 6, tail)
+            angle_display_panel.set_ls_status_light(6, tail)
