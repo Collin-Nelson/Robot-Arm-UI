@@ -45,10 +45,14 @@
 # [X] TODO Fix only one joint homing if at least one joint is unchecked
 # [X] TODO fix run queue button on second tab of UI
 # [X] TODO look at scope of "filename" in PosesQueuePanel
-# [] TODO Make sure the code in the while loop in main() can run in parallel with the app.mainloop() loop - while loop has been moved to serial in on_timer
-
+# [X] TODO Make sure the code in the while loop in main() can run in parallel with the app.mainloop() loop - while loop has been moved to serial in on_timer
+# [X] TODO fix AngleDisplayPanel not updating
+# [X] TODO debug serial communication and ser.in_waiting in the serial_read function
+# [X] TODO Make sure the print pos and LS status messages outgoing and incomming aren't displayed in the UI
+# [] TODO make console output on all tabs the same
 
 # LESS IMPORTANT
+# [] TODO Add a status light/display for the end effector
 # [] TODO Add another tab to UI to set acceleration, max speed, angle range, LS position, etc parameters, etc
 # [] TODO Implement dynamic size and position within the window and each panel - NEEDED?
 # [] TODO Add logging
