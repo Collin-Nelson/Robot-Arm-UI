@@ -1,6 +1,6 @@
 # File to handle all of the serial communication with the robot arm
 
-import serial, queue, time
+import wx, serial, queue, time
 from AngleDisplayPanel import AngleDisplayPanel
 
 queue = queue.Queue()
@@ -19,7 +19,6 @@ class SerialComms:
         self.on_timer()
 
     def on_timer(self):
-        time.sleep(1)
         self.serial_check()
         self.serial_write("print pos")
         self.serial_write("LS status")
@@ -38,6 +37,7 @@ class SerialComms:
         global waiting
         if waiting:  # If the arm is waiting for a command, send the command, if not, add it to the queue
             my_str = string.encode('utf-8')
+            print(my_str)
             ser.write(my_str)
             waiting = False
             print("Command '", string, "' sent \n")

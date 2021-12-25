@@ -1,4 +1,3 @@
-
 # [X] TODO Add position readouts of current joints
 # [X] TODO Center the titles in each panel
 # [X] TODO Add buttons to command homing and other commands (zero)
@@ -16,40 +15,42 @@
 # [X] TODO Add the ability to control the gripper to the poses queue tab
 # [X] TODO Get serial running with teensy hardware, then uncomment SerialComms call in PosesQueuePanel and test
 # [X] TODO Add code to deal with data read from serial
-# [] TODO Make sure the code in the while loop in main() can run in parallel with the app.mainloop() loop - while loop has been moved to serial in on_timer
 # [X] TODO Add methods to set tc1-6 and LS statuses on the AngleDisplayPanel
+# [X] TODO Make AngleDisplayPanel pythonic and no errors except passing wrong "self"
+# [X] TODO Make AngleInputPanel pythonic and no errors except passing wrong "self"
+# [X] TODO Make ConsoleOutput pythonic and no errors except passing wrong "self"
+# [X] TODO Make EndEffectorCommand pythonic and no errors except passing wrong "self"
+# [X] TODO Make HomeCommand pythonic and no errors except passing wrong "self"
+# [X] TODO Make main pythonic and no errors except passing wrong "self"
+# [X] TODO Make MainFrame pythonic and no errors except passing wrong "self"
+# [X] TODO Make PosesGeneratorPanel pythonic and no errors except passing wrong "self"
+# [X] TODO Make PosesQueuePanel pythonic and no errors except passing wrong "self"
+# [X] TODO Make Serial pythonic and no errors except passing wrong "self"
+# [X] TODO Make TextCommand pythonic and no errors except passing wrong "self"
+# [X] TODO Make ZeroCommands pythonic and no errors except passing wrong "self"
+# [X] TODO fix erros for wrong "self" in AngleDisplayPanel
+# [X] TODO fix erros for wrong "self" in AngleInputPanel
+# [X] TODO fix erros for wrong "self" in ConsoleOutput
+# [X] TODO fix erros for wrong "self" in EndEffectorCommand
+# [X] TODO fix erros for wrong "self" in HomeCommand
+# [X] TODO fix erros for wrong "self" in main
+# [X] TODO fix erros for wrong "self" in MainFrame
+# [X] TODO fix erros for wrong "self" in PosesGeneratorPanel
+# [X] TODO fix erros for wrong "self" in PosesQueuePanel
+# [X] TODO fix erros for wrong "self" in TextCommand
+# [X] TODO fix erros for wrong "self" in ZeroCommands
+# [] TODO fix erros for wrong "self" in Serial - Needs AngleDisplayPanel - How to get the instance of AngleDispalyPanel to serial?
+# [] TODO fix buttons only being pressable once/getting pressed on startup (possibly related to above or below issue)
+# [] TODO Make sure the code in the while loop in main() can run in parallel with the app.mainloop() loop - while loop has been moved to serial in on_timer
 # [] TODO Fix only one joint homing if at least one joint is unchecked
-# [] TODO rework all code to properly use classes and pass around the correct info (class instances)
-    # [X] TODO Make AngleDisplayPanel pythonic and no errors except passing wrong "self"
-    # [X] TODO Make AngleInputPanel pythonic and no errors except passing wrong "self"
-    # [X] TODO Make ConsoleOutput pythonic and no errors except passing wrong "self"
-    # [X] TODO Make EndEffectorCommand pythonic and no errors except passing wrong "self"
-    # [X] TODO Make HomeCommand pythonic and no errors except passing wrong "self"
-    # [X] TODO Make main pythonic and no errors except passing wrong "self"
-    # [X] TODO Make MainFrame pythonic and no errors except passing wrong "self"
-    # [X] TODO Make PosesGeneratorPanel pythonic and no errors except passing wrong "self"
-    # [X] TODO Make PosesQueuePanel pythonic and no errors except passing wrong "self"
-    # [X] TODO Make Serial pythonic and no errors except passing wrong "self"
-    # [X] TODO Make TextCommand pythonic and no errors except passing wrong "self"
-    # [X] TODO Make ZeroCommands pythonic and no errors except passing wrong "self"
-    # [] TODO fix erros for wrong "self" in AngleDisplayPanel
-    # [] TODO fix erros for wrong "self" in  AngleInputPanel
-    # [] TODO fix erros for wrong "self" in  ConsoleOutput
-    # [] TODO fix erros for wrong "self" in  EndEffectorCommand
-    # [] TODO fix erros for wrong "self" in  HomeCommand
-    # [] TODO fix erros for wrong "self" in  main
-    # [] TODO fix erros for wrong "self" in  MainFrame
-    # [] TODO fix erros for wrong "self" in  PosesGeneratorPanel
-    # [] TODO fix erros for wrong "self" in  PosesQueuePanel
-    # [] TODO fix erros for wrong "self" in  Serial
-    # [] TODO fix erros for wrong "self" in  TextCommand
-    # [] TODO fix erros for wrong "self" in  ZeroCommands
+# [] TODO rework all code to properly use classes and pass around the correct info (class instances) - possibly pass serial down the tree from main?
 
-# [] TODO make or pass an AngleDisplayPanel instance to Serial to call the methods to set LS and angle statuses
-
+    
+# TODO look at scope of "filename" in PosesQueuePanel
 
 # LESS IMPORTANT
 # [] TODO Add another tab to UI to set acceleration, max speed, angle range, LS position, etc parameters, etc
 # [] TODO Implement dynamic size and position within the window and each panel - NEEDED?
+# [] TODO Add logging
 # [X] TODO Make the second tab of the UI into a place to generate poses and queue them, then run the entire queue at once
 # [X] TODO Make the third tab of the UI a place to save different queues of poses and load them into the second tab to run - possibly also fits in the second tab

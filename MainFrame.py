@@ -12,14 +12,14 @@ from PoseGeneratorPanel import PoseGeneratorPanel
 
 
 class MainFrame(wx.Frame):
-    def __init__(self):
+    def __init__(self, serial):
         super().__init__(parent=None, title='Robot Arm UI', size=(1250, 750))
 
         p = wx.Panel(self)
         nb = wx.Notebook(p)
 
-        tab1 = ControlTab(nb)
-        tab2 = PoseQueueTab(nb)
+        tab1 = ControlTab(nb, serial)
+        tab2 = PoseQueueTab(nb, serial)
         tab3 = ParametersTab(nb)
 
         nb.AddPage(tab1, "Manual Control")
@@ -32,31 +32,31 @@ class MainFrame(wx.Frame):
 
 
 class ControlTab(wx.Panel):
-    def __init__(self, parent):
+    def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent)
         # t = wx.StaticText(self, -1, "Controls Tab", (20,20))
 
         self.SetBackgroundColour('gray')
 
         self.Panel = AngleDisplayPanel(self)
-        self.Panel = AngleInputPanel(self)
-        self.Panel = HomeCommands(self)
-        self.Panel = ZeroCommands(self)
-        self.Panel = TextCommand(self)
-        self.Panel = EndEffectorCommand(self)
-        self.Panel = ConsoleOutputPanel(self)
+        self.Panel = AngleInputPanel(self, serial)
+        self.Panel = HomeCommands(self, serial)
+        self.Panel = ZeroCommands(self, serial)
+        self.Panel = TextCommand(self, serial)
+        self.Panel = EndEffectorCommand(self, serial)
+        self.Panel = ConsoleOutputPanel(self, serial)
 
 
 class PoseQueueTab(wx.Panel):
-    def __init__(self, parent):
+    def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent)
         # t = wx.StaticText(self, -1, "Second Tab", (20,20))
 
         self.SetBackgroundColour('gray')
 
-        self.Panel = PosesQueuePanel(self)
-        self.Panel = PoseGeneratorPanel(self)
-        # self.Panel = ConsoleOutputPanel(self)
+        self.Panel = PosesQueuePanel(self, serial)
+        self.Panel = PoseGeneratorPanel(self, self.Panel)
+        self.Panel = ConsoleOutputPanel(self, serial)
 
 
 class ParametersTab(wx.Panel):

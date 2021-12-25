@@ -1,10 +1,8 @@
 import wx
 
-from Serial import SerialComms
-
 
 class AngleInputPanel(wx.Panel):
-    def __init__(self, parent):
+    def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent=parent, pos=(415, 5), size=(200, 230), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label="Joint Angle Inputs", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
@@ -33,65 +31,65 @@ class AngleInputPanel(wx.Panel):
         btn6 = wx.Button(self, label='Move J6', pos=(5, 170))
 
         # Bind each button to its action
-        btn1.Bind(wx.EVT_BUTTON, self.btn1_press)
-        btn2.Bind(wx.EVT_BUTTON, self.btn2_press)
-        btn3.Bind(wx.EVT_BUTTON, self.btn3_press)
-        btn4.Bind(wx.EVT_BUTTON, self.btn4_press)
-        btn5.Bind(wx.EVT_BUTTON, self.btn5_press)
-        btn6.Bind(wx.EVT_BUTTON, self.btn6_press)
-        btn7.Bind(wx.EVT_BUTTON, self.btn7_press)
+        btn1.Bind(wx.EVT_BUTTON, self.btn1_press(self, serial))
+        btn2.Bind(wx.EVT_BUTTON, self.btn2_press(self, serial))
+        btn3.Bind(wx.EVT_BUTTON, self.btn3_press(self, serial))
+        btn4.Bind(wx.EVT_BUTTON, self.btn4_press(self, serial))
+        btn5.Bind(wx.EVT_BUTTON, self.btn5_press(self, serial))
+        btn6.Bind(wx.EVT_BUTTON, self.btn6_press(self, serial))
+        btn7.Bind(wx.EVT_BUTTON, self.btn7_press(self, serial))
 
     # Actions for each button
-    def btn1_press(self, event):
+    def btn1_press(self, event, serial):
         value = self.tc1.GetValue()
         if not value:
             print("You didn't enter anything!")
 
         else:
             print(f'You typed: "{value}"')
-            SerialComms.serial_write(self, "1:" + value)
+            serial.serial_write(self, "1:" + value)
 
-    def btn2_press(self, event):
+    def btn2_press(self, event, serial):
         value = self.tc2.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.serial_write(self, "2:" + value)
+            serial.serial_write(self, "2:" + value)
 
-    def btn3_press(self, event):
+    def btn3_press(self, event, serial):
         value = self.tc3.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.serial_write(self, "3:" + value)
+            serial.serial_write(self, "3:" + value)
 
-    def btn4_press(self, event):
+    def btn4_press(self, event, serial):
         value = self.tc4.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.serial_write(self, "4:" + value)
+            serial.serial_write(self, "4:" + value)
 
-    def btn5_press(self, event):
+    def btn5_press(self, event, serial):
         value = self.tc5.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.serial_write(self, "5:" + value)
+            serial.serial_write(self, "5:" + value)
 
-    def btn6_press(self, event):
+    def btn6_press(self, event, serial):
         value = self.tc6.GetValue()
         if not value:
             print("You didn't enter anything!")
         else:
             print(f'You typed: "{value}"')
-            SerialComms.serial_write(self, "6:" + value)
+            serial.serial_write(self, "6:" + value)
 
-    def btn7_press(self, event):
+    def btn7_press(self, event, serial):
         value1 = self.tc1.GetValue()
         value2 = self.tc2.GetValue()
         value3 = self.tc3.GetValue()
@@ -113,5 +111,5 @@ class AngleInputPanel(wx.Panel):
         if value6 == "":
             value6 = "0"
 
-        SerialComms.serial_write(self, "1:" + value1 + ".2:" + value2 + ".3:" + value3 +
-                                 ".4:" + value4 + ".5:" + value5 + ".6:" + value6)
+        serial.serial_write("1:" + value1 + ".2:" + value2 + ".3:" + value3 +
+                            ".4:" + value4 + ".5:" + value5 + ".6:" + value6)

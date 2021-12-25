@@ -6,12 +6,11 @@ from Serial import SerialComms
 
 
 def main():
-    app = wx.App()
-    frame = MainFrame()
-    frame.Show()
-
     serial = SerialComms()
-    # serial.on_timer()
+
+    app = wx.App()
+    frame = MainFrame(serial)
+    frame.Show()
 
     app.MainLoop()
 

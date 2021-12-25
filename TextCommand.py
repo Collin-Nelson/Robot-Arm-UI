@@ -1,10 +1,8 @@
 import wx
 
-from Serial import SerialComms
-
 
 class TextCommand(wx.Panel):
-    def __init__(self, parent):
+    def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent=parent, pos=(825, 5), size=(200, 230), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label="Text Command", size=(200, 18), style=wx.ALIGN_CENTER_HORIZONTAL)
@@ -22,11 +20,11 @@ class TextCommand(wx.Panel):
         com_btn = wx.Button(self, label='Send Command String', pos=(20, 70))
 
         # Bind zero button to its action
-        com_btn.Bind(wx.EVT_BUTTON, self.com_btn_press)
+        com_btn.Bind(wx.EVT_BUTTON, self.com_btn_press(self, serial))
 
     # Deals with zero button press
-    def com_btn_press(self, event):
+    def com_btn_press(self, event, serial):
         value = self.comtc.GetValue()
         print("Send Command Button Pressed")
         print(f"Command string is:", value)
-        SerialComms.serial_write(self, value)
+        serial.serial_write(value)

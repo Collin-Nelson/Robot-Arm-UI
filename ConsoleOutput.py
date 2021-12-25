@@ -1,7 +1,5 @@
 import wx, sys
 
-from Serial import SerialComms
-
 
 class RedirectText(object):
     def __init__(self, a_xx_text_ctrl):
@@ -12,7 +10,7 @@ class RedirectText(object):
 
 
 class ConsoleOutputPanel(wx.Panel):
-    def __init__(self, parent):
+    def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent=parent, pos=(5, 5), size=(405, 465), style=wx.SUNKEN_BORDER)
 
         title = wx.StaticText(self, label="Console Output", pos=(5, 5), size=(200, 20), style=wx.ALIGN_LEFT)
@@ -28,7 +26,7 @@ class ConsoleOutputPanel(wx.Panel):
 
         # Button to force sending the next command in the serial commands queue
         btn1 = wx.Button(self, label='Force Send Command Queue', pos=(5, 430))
-        btn1.Bind(wx.EVT_BUTTON, self.btn1_press)
+        btn1.Bind(wx.EVT_BUTTON, self.btn1_press(self, serial))
 
-    def btn1_press(self, event):
-        SerialComms.serial_force_send(self)
+    def btn1_press(self, event, serial):
+        serial.serial_force_send()
