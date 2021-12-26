@@ -1,7 +1,5 @@
 import wx
 
-from random import random
-
 
 class AngleDisplayPanel(wx.Panel):
     def __init__(self, parent, serial):

@@ -9,7 +9,10 @@ from EndEffectorCommand import EndEffectorCommand
 from ConsoleOutput import ConsoleOutputPanel
 from PosesQueuePanel import PosesQueuePanel
 from PoseGeneratorPanel import PoseGeneratorPanel
-
+from AccelSet import AccelSet
+from VelSet import VelSet
+from MinAngleSet import MinAngleSet
+from MaxAngleSet import MaxAngleSet
 
 class MainFrame(wx.Frame):
     def __init__(self, serial):
@@ -31,7 +34,7 @@ class MainFrame(wx.Frame):
 
         tab1 = ControlTab(ntbk, serial)
         tab2 = PoseQueueTab(ntbk, serial)
-        tab3 = ParametersTab(ntbk)
+        tab3 = ParametersTab(ntbk, serial)
 
         ntbk.AddPage(tab1, "Manual Control")
         ntbk.AddPage(tab2, "Pose Queue")
@@ -80,7 +83,19 @@ class PoseQueueTab(wx.Panel):
 
 
 class ParametersTab(wx.Panel):
-    def __init__(self, parent):
+    def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent)
 
         self.SetBackgroundColour('gray')
+
+        panel1 = AccelSet(self, serial)
+        panel2 = VelSet(self, serial)
+        panel3 = MinAngleSet(self, serial)
+        panel4 = MaxAngleSet(self, serial)
+
+        sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer.Add(panel1, 0, wx.EXPAND | wx.ALL, border=5)
+        sizer.Add(panel2, 0, wx.EXPAND | wx.ALL, border=5)
+        sizer.Add(panel3, 0, wx.EXPAND | wx.ALL, border=5)
+        sizer.Add(panel4, 0, wx.EXPAND | wx.ALL, border=5)
+        self.SetSizer(sizer)
