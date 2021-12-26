@@ -3,7 +3,7 @@ import wx
 
 class AngleInputPanel(wx.Panel):
     def __init__(self, parent, serial):
-        wx.Panel.__init__(self, parent=parent, pos=(415, 5), size=(200, 230), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, size=(200, 230), style=wx.SUNKEN_BORDER)
 
         self.serial = serial
 
@@ -16,21 +16,21 @@ class AngleInputPanel(wx.Panel):
         title.SetFont(font)
 
         # Text input boxes for the angle for each joint
-        self.tc1 = wx.TextCtrl(self, pos=(90, 20))
-        self.tc2 = wx.TextCtrl(self, pos=(90, 50))
-        self.tc3 = wx.TextCtrl(self, pos=(90, 80))
-        self.tc4 = wx.TextCtrl(self, pos=(90, 110))
-        self.tc5 = wx.TextCtrl(self, pos=(90, 140))
-        self.tc6 = wx.TextCtrl(self, pos=(90, 170))
+        self.tc1 = wx.TextCtrl(self, pos=(90, 30), size=(100, 22))
+        self.tc2 = wx.TextCtrl(self, pos=(90, 60), size=(100, 22))
+        self.tc3 = wx.TextCtrl(self, pos=(90, 90), size=(100, 22))
+        self.tc4 = wx.TextCtrl(self, pos=(90, 120), size=(100, 22))
+        self.tc5 = wx.TextCtrl(self, pos=(90, 150), size=(100, 22))
+        self.tc6 = wx.TextCtrl(self, pos=(90, 180), size=(100, 22))
 
         # Buttons to trigger moving to the specified number of degrees
-        btn7 = wx.Button(self, label='Move All', pos=(5, 200), size=(175, 30))
-        btn1 = wx.Button(self, label='Move J1', pos=(5, 20))
-        btn2 = wx.Button(self, label='Move J2', pos=(5, 50))
-        btn3 = wx.Button(self, label='Move J3', pos=(5, 80))
-        btn4 = wx.Button(self, label='Move J4', pos=(5, 110))
-        btn5 = wx.Button(self, label='Move J5', pos=(5, 140))
-        btn6 = wx.Button(self, label='Move J6', pos=(5, 170))
+        btn1 = wx.Button(self, label='Move J1', pos=(5, 30))
+        btn2 = wx.Button(self, label='Move J2', pos=(5, 60))
+        btn3 = wx.Button(self, label='Move J3', pos=(5, 90))
+        btn4 = wx.Button(self, label='Move J4', pos=(5, 120))
+        btn5 = wx.Button(self, label='Move J5', pos=(5, 150))
+        btn6 = wx.Button(self, label='Move J6', pos=(5, 180))
+        btn7 = wx.Button(self, label='Move All', pos=(5, 210), size=(175, 30))
 
         # Bind each button to its action
         btn1.Bind(wx.EVT_BUTTON, self.btn1_press)

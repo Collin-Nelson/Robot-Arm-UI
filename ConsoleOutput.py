@@ -11,7 +11,7 @@ class RedirectText(object):
 
 class ConsoleOutputPanel(wx.Panel):
     def __init__(self, parent, serial):
-        wx.Panel.__init__(self, parent=parent, pos=(5, 5), size=(405, 465), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, pos=(5, 5), size=(405, 400), style=wx.SUNKEN_BORDER)
 
         self.serial = serial
 

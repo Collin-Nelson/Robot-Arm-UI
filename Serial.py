@@ -95,6 +95,9 @@ class SerialComms:
         elif head == "Stepper 6":
             # Set position field for J6 in the UI to be tail
             angle_display_panel.set_joint_angle(6, tail)
+        elif head == "Gripper 7":
+            # Set position field for J6 in the UI to be tail
+            angle_display_panel.set_joint_angle(7, tail)
 
         # if limit switch reports are received, update the UI to show which are triggered and which are not
         elif head == "LS1":

@@ -15,53 +15,72 @@ class MainFrame(wx.Frame):
     def __init__(self, serial):
         super().__init__(parent=None, title='Robot Arm UI', size=(1250, 750))
 
-        p = wx.Panel(self)
-        nb = wx.Notebook(p)
+        topPanel = wx.Panel(self)
+        constPanel = wx.Panel(topPanel)
+        topPanel.SetBackgroundColour('gray')
 
-        tab1 = ControlTab(nb, serial)
-        tab2 = PoseQueueTab(nb, serial)
-        tab3 = ParametersTab(nb)
+        panel1 = ConsoleOutputPanel(constPanel, serial)
+        panel2 = AngleDisplayPanel(constPanel, serial)
 
-        nb.AddPage(tab1, "Manual Control")
-        nb.AddPage(tab2, "Pose Queue")
-        nb.AddPage(tab3, "Set Parameters")
+        sizer1 = wx.BoxSizer(wx.VERTICAL)
+        sizer1.Add(panel1, 0, wx.EXPAND | wx.ALL, border=10)
+        sizer1.Add(panel2, 0, wx.EXPAND | wx.ALL, border=10)
+        constPanel.SetSizer(sizer1)
 
-        sizer = wx.BoxSizer()
-        sizer.Add(nb, 1, wx.EXPAND)
-        p.SetSizer(sizer)
+        ntbk = wx.Notebook(topPanel)
+
+        tab1 = ControlTab(ntbk, serial)
+        tab2 = PoseQueueTab(ntbk, serial)
+        tab3 = ParametersTab(ntbk)
+
+        ntbk.AddPage(tab1, "Manual Control")
+        ntbk.AddPage(tab2, "Pose Queue")
+        ntbk.AddPage(tab3, "Set Parameters")
+
+        sizer2 = wx.BoxSizer(wx.HORIZONTAL)
+        sizer2.Add(constPanel, 0, wx.EXPAND | wx.ALL, border=10)
+        sizer2.Add(ntbk, 0, wx.EXPAND | wx.TOP | wx.BOTTOM | wx.RIGHT, border=10)
+        topPanel.SetSizer(sizer2)
 
 
 class ControlTab(wx.Panel):
     def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent)
-        # t = wx.StaticText(self, -1, "Controls Tab", (20,20))
 
         self.SetBackgroundColour('gray')
 
-        self.Panel = AngleDisplayPanel(self, serial)
-        self.Panel = AngleInputPanel(self, serial)
-        self.Panel = HomeCommands(self, serial)
-        self.Panel = ZeroCommands(self, serial)
-        self.Panel = TextCommand(self, serial)
-        self.Panel = EndEffectorCommand(self, serial)
-        self.Panel = ConsoleOutputPanel(self, serial)
+        panel2 = AngleInputPanel(self, serial)
+        panel3 = EndEffectorCommand(self, serial)
+        panel4 = TextCommand(self, serial)
+        panel5 = HomeCommands(self, serial)
+        panel6 = ZeroCommands(self, serial)
+
+        sizer = wx.GridSizer(2, 3, 5, 5)
+        sizer.Add(panel2, 0, wx.EXPAND | wx.ALL, border=0)
+        sizer.Add(panel3, 0, wx.EXPAND | wx.ALL, border=0)
+        sizer.Add(panel4, 0, wx.EXPAND | wx.ALL, border=0)
+        sizer.Add(panel5, 0, wx.EXPAND | wx.ALL, border=0)
+        sizer.Add(panel6, 0, wx.EXPAND | wx.ALL, border=0)
+        self.SetSizer(sizer)
 
 
 class PoseQueueTab(wx.Panel):
     def __init__(self, parent, serial):
         wx.Panel.__init__(self, parent)
-        # t = wx.StaticText(self, -1, "Second Tab", (20,20))
 
         self.SetBackgroundColour('gray')
 
-        self.Panel = PosesQueuePanel(self, serial)
-        self.Panel = PoseGeneratorPanel(self, self.Panel)
-        # self.Panel = ConsoleOutputPanel(self, serial)
+        panel1 = PosesQueuePanel(self, serial)
+        panel2 = PoseGeneratorPanel(self, panel1)
+
+        sizer = wx.GridSizer(1, 2, 5, 5)
+        sizer.Add(panel1, 0, wx.EXPAND | wx.ALL, border=10)
+        sizer.Add(panel2, 0, wx.EXPAND | wx.ALL, border=10)
+        self.SetSizer(sizer)
 
 
 class ParametersTab(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        # t = wx.StaticText(self, -1, "Second Tab", (20,20))
 
         self.SetBackgroundColour('gray')
