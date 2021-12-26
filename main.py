@@ -9,8 +9,6 @@ from threading import Thread
 def serial_poll_thread(serial):
     while True:
         serial.serial_check()
-        # serial.serial_write("print pos")
-        # serial.serial_write_no_print("LS status")
         time.sleep(0.1)
 
 

@@ -53,9 +53,10 @@
 
 # LESS IMPORTANT
 # [X] TODO Add a status light/display for the end effector
-# [] TODO move AngleDisplayPanel to the console output panel of the UI
-# [] TODO Add another tab to UI to set acceleration, max speed, angle range, LS position, etc parameters, etc
+# [X] TODO move AngleDisplayPanel to the console output panel of the UI
+# [X] TODO Add another tab to UI to set acceleration, max speed, angle range, LS position, etc
+    -> the UI should never ask for the current parameters, but the arm should send them on startup and after updatating them
 # [X] TODO Implement dynamic size and position within the window and each panel - NEEDED?
-# [] TODO Add logging
 # [X] TODO Make the second tab of the UI into a place to generate poses and queue them, then run the entire queue at once
 # [X] TODO Make the third tab of the UI a place to save different queues of poses and load them into the second tab to run - possibly also fits in the second tab
+# [] TODO Add logging
