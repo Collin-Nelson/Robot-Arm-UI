@@ -16,12 +16,12 @@ class PoseGeneratorPanel(wx.Panel):
         title.SetFont(font)
 
         # Labels for the joint angle text boxes
-        lbl1 = wx.StaticText(self, label="J1", pos=(10, 25))
-        lbl2 = wx.StaticText(self, label="J2", pos=(10, 55))
-        lbl3 = wx.StaticText(self, label="J3", pos=(10, 85))
-        lbl4 = wx.StaticText(self, label="J4", pos=(10, 115))
-        lbl5 = wx.StaticText(self, label="J5", pos=(10, 145))
-        lbl6 = wx.StaticText(self, label="J6", pos=(10, 175))
+        lbl1 = wx.StaticText(self, label="J1", pos=(20, 35))
+        lbl2 = wx.StaticText(self, label="J2", pos=(20, 65))
+        lbl3 = wx.StaticText(self, label="J3", pos=(20, 95))
+        lbl4 = wx.StaticText(self, label="J4", pos=(20, 125))
+        lbl5 = wx.StaticText(self, label="J5", pos=(20, 155))
+        lbl6 = wx.StaticText(self, label="J6", pos=(20, 185))
 
         # Set the font of the labels on the joint angle display textctrl boxes
         lblfont = lbl1.GetFont()
@@ -35,19 +35,19 @@ class PoseGeneratorPanel(wx.Panel):
         lbl6.SetFont(lblfont)
 
         # Text input boxes for the angle for each joint
-        self.tc1 = wx.TextCtrl(self, pos=(40, 20))
-        self.tc2 = wx.TextCtrl(self, pos=(40, 50))
-        self.tc3 = wx.TextCtrl(self, pos=(40, 80))
-        self.tc4 = wx.TextCtrl(self, pos=(40, 110))
-        self.tc5 = wx.TextCtrl(self, pos=(40, 140))
-        self.tc6 = wx.TextCtrl(self, pos=(40, 170))
+        self.tc1 = wx.TextCtrl(self, pos=(50, 30))
+        self.tc2 = wx.TextCtrl(self, pos=(50, 60))
+        self.tc3 = wx.TextCtrl(self, pos=(50, 90))
+        self.tc4 = wx.TextCtrl(self, pos=(50, 120))
+        self.tc5 = wx.TextCtrl(self, pos=(50, 150))
+        self.tc6 = wx.TextCtrl(self, pos=(50, 180))
 
         # Button to to add pose to the queue
-        btn1 = wx.Button(self, label='Add to Queue', pos=(5, 200), size=(175, 30))
+        btn1 = wx.Button(self, label='Add to Queue', pos=(15, 210), size=(175, 30))
 
         # Buttons to add command to open and close gripper to queue
-        btn2 = wx.Button(self, label='Open Gripper', pos=(5, 235), size=(85, 30))
-        btn3 = wx.Button(self, label='Close Gripper', pos=(95, 235), size=(85, 30))
+        btn2 = wx.Button(self, label='Open Gripper', pos=(15, 245), size=(85, 30))
+        btn3 = wx.Button(self, label='Close Gripper', pos=(105, 245), size=(85, 30))
 
         # Bind buttons to actions
         btn1.Bind(wx.EVT_BUTTON, self.btn1_press)

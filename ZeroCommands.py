@@ -3,7 +3,7 @@ import wx
 
 class ZeroCommands(wx.Panel):
     def __init__(self, parent, serial):
-        wx.Panel.__init__(self, parent=parent, pos=(620, 240), size=(200, 230), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, size=(200, 230), style=wx.SUNKEN_BORDER)
 
         self.serial = serial
 
@@ -16,12 +16,12 @@ class ZeroCommands(wx.Panel):
         title.SetFont(font)
 
         # Checkbox for each axis to zero
-        self.chk1 = wx.CheckBox(self, label="Joint 1", pos=(10, 50))
-        self.chk2 = wx.CheckBox(self, label="Joint 2", pos=(10, 70))
-        self.chk3 = wx.CheckBox(self, label="Joint 3", pos=(10, 90))
-        self.chk4 = wx.CheckBox(self, label="Joint 4", pos=(10, 110))
-        self.chk5 = wx.CheckBox(self, label="Joint 5", pos=(10, 130))
-        self.chk6 = wx.CheckBox(self, label="Joint 6", pos=(10, 150))
+        self.chk1 = wx.CheckBox(self, label="Joint 1", pos=(10, 60))
+        self.chk2 = wx.CheckBox(self, label="Joint 2", pos=(10, 80))
+        self.chk3 = wx.CheckBox(self, label="Joint 3", pos=(10, 100))
+        self.chk4 = wx.CheckBox(self, label="Joint 4", pos=(10, 120))
+        self.chk5 = wx.CheckBox(self, label="Joint 5", pos=(10, 140))
+        self.chk6 = wx.CheckBox(self, label="Joint 6", pos=(10, 160))
 
         # Sets checkboxes to default to checked
         self.chk1.SetValue(1)
@@ -32,7 +32,7 @@ class ZeroCommands(wx.Panel):
         self.chk6.SetValue(1)
 
         # Button to zero selected axes
-        zero_btn = wx.Button(self, label='Zero Selected Axes', pos=(5, 20))
+        zero_btn = wx.Button(self, label='Zero Selected Axes', pos=(5, 30))
 
         # Bind zero button to its action
         zero_btn.Bind(wx.EVT_BUTTON, self.zero_btn_press)

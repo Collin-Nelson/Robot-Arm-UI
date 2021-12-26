@@ -49,12 +49,13 @@
 # [X] TODO fix AngleDisplayPanel not updating
 # [X] TODO debug serial communication and ser.in_waiting in the serial_read function
 # [X] TODO Make sure the print pos and LS status messages outgoing and incomming aren't displayed in the UI
-# [] TODO make console output on all tabs the same
+# [X] TODO make console output on all tabs the same
 
 # LESS IMPORTANT
-# [] TODO Add a status light/display for the end effector
+# [X] TODO Add a status light/display for the end effector
+# [] TODO move AngleDisplayPanel to the console output panel of the UI
 # [] TODO Add another tab to UI to set acceleration, max speed, angle range, LS position, etc parameters, etc
-# [] TODO Implement dynamic size and position within the window and each panel - NEEDED?
+# [X] TODO Implement dynamic size and position within the window and each panel - NEEDED?
 # [] TODO Add logging
 # [X] TODO Make the second tab of the UI into a place to generate poses and queue them, then run the entire queue at once
 # [X] TODO Make the third tab of the UI a place to save different queues of poses and load them into the second tab to run - possibly also fits in the second tab

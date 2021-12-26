@@ -3,7 +3,7 @@ import wx
 
 class TextCommand(wx.Panel):
     def __init__(self, parent, serial):
-        wx.Panel.__init__(self, parent=parent, pos=(825, 5), size=(200, 230), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, size=(200, 230), style=wx.SUNKEN_BORDER)
 
         self.serial = serial
 
@@ -16,10 +16,10 @@ class TextCommand(wx.Panel):
         title.SetFont(font)
 
         # Text control for inputting text commands to be sent directly over serial
-        self.comtc = wx.TextCtrl(self, pos=(35, 40))
+        self.comtc = wx.TextCtrl(self, pos=(35, 30))
 
         # Button to send command string
-        com_btn = wx.Button(self, label='Send Command String', pos=(20, 70))
+        com_btn = wx.Button(self, label='Send Command String', pos=(20, 60))
 
         # Bind zero button to its action
         com_btn.Bind(wx.EVT_BUTTON, self.com_btn_press)

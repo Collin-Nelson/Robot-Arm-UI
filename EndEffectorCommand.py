@@ -3,7 +3,7 @@ import wx
 
 class EndEffectorCommand(wx.Panel):
     def __init__(self, parent, serial):
-        wx.Panel.__init__(self, parent=parent, pos=(825, 240), size=(200, 230), style=wx.SUNKEN_BORDER)
+        wx.Panel.__init__(self, parent=parent, size=(200, 230), style=wx.SUNKEN_BORDER)
 
         self.serial = serial
 
