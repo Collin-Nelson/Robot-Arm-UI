@@ -3,15 +3,25 @@
 import serial, queue
 
 
-class SerialComms:
+class serial_comms:
     def __init__(self):
-
-        print("init SerialComms")
 
         self.queue = queue.Queue()
         self.waiting = True
-        # Start serial connection - uncomment lines below when hardware connected
-        self.ser = serial.Serial('COM3', 57600, timeout=1)
+
+        # Start serial connection
+        self.com_port = 'COM1'
+        self.baudrate = 57600
+        self.set_com_port(self.com_port)
+
+    # Function to set com port for serial coommunication
+    def set_com_port(self, com_port):
+        self.com_port = com_port
+        print("Initializing serial communication on", self.com_port)
+        try:
+            self.ser = serial.Serial(self.com_port, self.baudrate, timeout=1)
+        except:
+            print("Serial communication could not be initialized on", self.com_port)
 
     # Pass the AngleDisplayPanel to serial so it can be updated
     def pass_angle_display_panel(self, angle_disp_panel):
@@ -41,7 +51,7 @@ class SerialComms:
     # Function periodically called to check if there is anything waiting to be read from the serial connection and
     # read it in if so
     def serial_check(self):
-        while self.ser.in_waiting > 0:
+        while self.waiting > 0:
             # self.serial_write_no_print("print pos")
             # self.serial_write_no_print("LS status")
             self.serial_read()
